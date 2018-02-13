@@ -25,7 +25,7 @@ const receiveTopics = (tab, page, limit, data) => ({
 export const fetchTopics = (tab, page = 1, limit = 10) => {
     return (dispatch) => {
         dispatch(requestTopics(tab, page, limit));
-        fetch(`/api/v1/topics?tab=${tab}&page=${page}&limit=${limit}&mdrender=false`)
+        fetch(`https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&limit=${limit}&mdrender=false`)
             .then(response => response.json())
             .then(
                 (data) => {
