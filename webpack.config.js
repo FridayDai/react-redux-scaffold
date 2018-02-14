@@ -7,6 +7,7 @@ var htmlwebpackplugin = require('html-webpack-plugin');
 var cleanwebpackplugin = require('clean-webpack-plugin');
 
 var ROOT = path.resolve(__dirname);
+var SRC = path.resolve(ROOT, 'src');
 var ENTRY = path.resolve(ROOT, 'src', 'index.js');
 var DIST = path.resolve(ROOT, 'dist');
 // var test = path.resolve(ROOT, 'src', 'reducers', 'reducers.js');
@@ -30,7 +31,16 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                loader: "babel-loader"
+                exclude: /node_modules/,
+                include: SRC,
+                use: [
+                    {
+                        loader: "babel-loader" // 使用babel-loader这个loader
+                        // options: {
+                        //     presets: ['es2015', 'react']
+                        // }
+                    }
+                ]
             }
         ]
     },
@@ -48,19 +58,7 @@ module.exports = {
                     collapseWhitespace: false,
                 }
             }
-        ),
-        // new htmlwebpackplugin(
-        //     {
-        //         title: '2222',
-        //         template: 'template.html',
-        //         chunks: ['test'],
-        //         filename: 'test.html',
-        //         minify: {
-        //             removeComments: true,
-        //             collapseWhitespace: false,
-        //         }
-        //     }
-        // )
+        )
     ],
 
     devServer: {
@@ -71,6 +69,10 @@ module.exports = {
         contentBase: './dist',
         historyApiFallback: false,
         proxy: {
+            "/getName": {
+                target: "http://106.15.93.13:6789/",
+                secure: false
+            },
             "/**": {
                 // target: 'http://localhost:8080',
                 target: "https://cnodejs.org/",

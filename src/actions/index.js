@@ -3,10 +3,15 @@ export const TEST_ACTION = 'TEST_ACTION';
 export const REQUEST_TOPICS = 'REQUEST_TOPICS';
 export const RECEIVE_TOPICS = 'RECEIVE_TOPICS';
 
-export const testAction = (test) => ({
-    'type': TEST_ACTION,
-    'test': test
-});
+export const testAction = () => {
+    return () => {
+        fetch(`/getName`).then(res => res.json()).then(
+            (data) => console.log(data)
+            ,
+            (xhr) => console.log(xhr)
+        );
+    }
+};
 
 const requestTopics = (tab, page, limit) => ({
     'type': REQUEST_TOPICS,
