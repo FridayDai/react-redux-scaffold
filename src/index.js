@@ -10,7 +10,7 @@ const rootElement = document.getElementById('container');
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path='/' component={App} >
+            <Route path='/' component={App}>
                 <IndexRoute component={HomePage} />
             </Route>
         </Router>

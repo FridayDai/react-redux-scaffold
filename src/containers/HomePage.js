@@ -4,6 +4,9 @@
 import React, { Component } from 'react';
 import {fetchTopics, testAction} from '../actions/index';
 import { connect } from 'react-redux';
+import NavHeader from '../components/HomePage/NavHeader.js';
+import Content from '../components/HomePage/Content.js';
+import './HomePage.css';
 
 class HomePage extends Component {
     constructor(props) {
@@ -17,26 +20,11 @@ class HomePage extends Component {
 
     render() {
         const {dispatch, fetchTopicsReducer} = this.props;
-        const tabData = (fetchTopicsReducer.data && fetchTopicsReducer.data.data) || [];
-        return (
-            <div>
-                <div style={{'textAlign': 'center'}}>
-                    <button
-                        style={{'width': '500px', 'height': '300px', 'fontSize': '36px', 'cursor': 'pointer'}}
-                        onClick={() => dispatch(fetchTopics('ask', 1, 10))}
-                    >
-                        Click to Test
-                    </button>
-                </div>
 
-                {
-                    tabData.map((item) => (
-                        <div>
-                            <h3><img src={item.author.avatar_url} alt={item.author.loginname || 'loginname'}/>{item.title}</h3>
-                            <div>{item.content}</div>
-                        </div>
-                    ))
-                }
+        return (
+            <div className='homepage-content'>
+                <NavHeader />
+                <Content />
             </div>
         );
     }

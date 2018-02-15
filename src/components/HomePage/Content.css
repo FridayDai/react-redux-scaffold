@@ -1,0 +1,11 @@
+.content {
+    color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: 15px;
+}

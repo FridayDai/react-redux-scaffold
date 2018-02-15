@@ -1,0 +1,9 @@
+.app-bar {
+    /*background-color: rgb(43, 40, 70) !important;*/
+    background-color: black !important;
+}
+
+.avatar {
+    background:url(../../images/avatar.jpg) no-repeat;
+    background-size: 40px 40px;
+}
