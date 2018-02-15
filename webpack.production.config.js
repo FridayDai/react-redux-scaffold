@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var ROOT = path.resolve(__dirname);
 var htmlwebpackplugin = require('html-webpack-plugin');
 var cleanwebpackplugin = require('clean-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var ENTRY = path.resolve(ROOT, 'src', 'index.js');
 var DIST = path.resolve(ROOT, 'dist');
 
@@ -20,6 +21,10 @@ var plugins = [
                 }
             }
         ),
+        new ExtractTextPlugin({
+            filename: 'css/[name].css',
+            allChunks: true
+        }),
         // webpack中-p代表--optimize-minimize也就是压缩的意思,cli中progress代表显示编译进度
         // webpack -p压缩的时候不会去掉一些注释，所以在这里可以设置一下，进一步压缩文件
         new webpack.optimize.UglifyJsPlugin({
@@ -68,18 +73,21 @@ module.exports = {
                 ]
             },
             {
-                test: /\.scss$/,
-                exclude: path.resolve(__dirname, 'src/styles'),
-                loader: 'style!css?modules!postcss!sass'
+                test: /\.(less|scss|css)$/,
+                loaders: ['style-loader', 'css-loader?minimize',
+                    {
+                        loader:'postcss-loader',
+                        options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+                            plugins: (loader) => [
+                                require('autoprefixer')(), //CSS浏览器兼容
+                            ]
+                        }
+                    }
+                ]
             },
             {
-                test: /\.css$/,
-                include: path.resolve(__dirname, 'src/styles'),
-                loader: 'style!css'
-            },
-            {
-                test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-                loader: 'url?limit=50000&name=[path][name].[ext]'
+                test: /\.(png|jpg|gif)$/,
+                use: ['url-loader?limit=10000&name=[name]_[hash:8].[ext]']
             }
         ]
     },

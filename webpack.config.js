@@ -5,6 +5,7 @@ var path = require('path');
 var webpack = require('webpack');
 var htmlwebpackplugin = require('html-webpack-plugin');
 var cleanwebpackplugin = require('clean-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var ROOT = path.resolve(__dirname);
 var SRC = path.resolve(ROOT, 'src');
@@ -27,7 +28,16 @@ module.exports = {
         rules: [
             {
                 test: /\.(less|scss|css)$/,
-                loaders: ['style-loader', 'css-loader?minimize', 'postcss-loader']
+                loaders: ['style-loader', 'css-loader?minimize',
+                    {
+                        loader:'postcss-loader',
+                        options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+                            plugins: (loader) => [
+                                require('autoprefixer')(), //CSS浏览器兼容
+                            ]
+                        }
+                    }
+                ]
             },
             {
                 test: /\.jsx?$/,
@@ -41,6 +51,10 @@ module.exports = {
                         // }
                     }
                 ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: ['url-loader?limit=10000&name=[name]_[hash:8].[ext]']
             }
         ]
     },
@@ -58,7 +72,11 @@ module.exports = {
                     collapseWhitespace: false,
                 }
             }
-        )
+        ),
+        new ExtractTextPlugin({
+            filename: 'css/[name].css',
+            allChunks: true
+        })
     ],
 
     devServer: {
