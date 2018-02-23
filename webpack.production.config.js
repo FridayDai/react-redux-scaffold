@@ -5,10 +5,10 @@ var htmlwebpackplugin = require('html-webpack-plugin');
 var cleanwebpackplugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var ENTRY = path.resolve(ROOT, 'src', 'index.js');
+var SRC = path.resolve(ROOT, 'src')
 var DIST = path.resolve(ROOT, 'dist');
 
 var plugins = [
-        new cleanwebpackplugin([DIST]),
         new htmlwebpackplugin(
             {
                 title: 'APP',
@@ -22,7 +22,7 @@ var plugins = [
             }
         ),
         new ExtractTextPlugin({
-            filename: 'css/[name].css',
+            filename: 'css/[name]_[hash:8].css',
             allChunks: true
         }),
         // webpack中-p代表--optimize-minimize也就是压缩的意思,cli中progress代表显示编译进度
@@ -49,7 +49,8 @@ var plugins = [
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             filename: 'vendor.bundle.js'
-        })
+        }),
+        new cleanwebpackplugin([DIST])
     ];
 
 module.exports = {
@@ -59,7 +60,7 @@ module.exports = {
     },
     output: {
         path: DIST,
-        // publicPath: '/assets/',
+        publicPath: '/',
         filename: 'bundle_[name]_[hash:8].js' //结束最终JS文件
     },
     module: {
@@ -78,7 +79,8 @@ module.exports = {
             },
             {
                 test: /\.(less|scss|css)$/,
-                loaders: ExtractTextPlugin.extract({
+                include: SRC,
+                use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: ['css-loader?minimize',
                         {
@@ -94,7 +96,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|gif)$/,
-                use: ['url-loader?limit=10000&name=[name]_[hash:8].[ext]']
+                use: ['url-loader?limit=10000&name=assets/[name]_[hash:8].[ext]']
             }
         ]
     },
