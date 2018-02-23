@@ -14,8 +14,8 @@ class HomePage extends Component {
     }
 
     componentWillMount() {
-        const {dispatch} = this.props;
-        dispatch(testAction());
+        // const {dispatch} = this.props;
+        // dispatch(testAction());
     }
 
     render() {

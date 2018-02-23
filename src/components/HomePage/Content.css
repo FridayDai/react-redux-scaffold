@@ -9,3 +9,38 @@
     font-weight: 700;
     letter-spacing: 15px;
 }
+
+@keyframes fadeIn {
+    0% {opacity: 0; transform: translateY(-30px)}
+    /*25% {opacity: 0.25}*/
+    /*50% {opacity: 0.5; transform: translateY(-10px)}*/
+    /*75% {opacity: 0.75}*/
+    100% {opacity: 1; transform: translateY(0px)}
+}
+
+.fade {
+    opacity: 0;
+}
+
+.content-a {
+    animation: fadeIn 1s linear forwards;
+    /*animation-name: fadeIn;*/
+    /*animation-duration: 1s;*/
+    /*animation-timing-function: linear;*/
+    animation-delay: 0.5s;
+}
+
+.content-b {
+    animation: fadeIn 1s linear forwards;
+    /*animation-name: fadeIn;*/
+    /*animation-duration: 1.5s;*/
+    /*animation-timing-function: linear;*/
+    animation-delay: 1s;
+}
+.content-c {
+    animation: fadeIn 1s linear forwards;
+    /*animation-name: fadeIn;*/
+    /*animation-duration: 2s;*/
+    /*animation-timing-function: linear;*/
+    animation-delay: 1.5s;
+}

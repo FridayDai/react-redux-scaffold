@@ -28,7 +28,7 @@ export default class NavHeader extends Component {
                         <div>
                             <span
                                 onClick={() => {
-                                    window.location = 'https://fridaydai.github.io/';
+                                    window.open('https://fridaydai.github.io/');
                                 }}
                             >
                                 BLOG

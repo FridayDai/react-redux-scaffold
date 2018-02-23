@@ -13,7 +13,7 @@ var plugins = [
             {
                 title: 'APP',
                 template: 'template.html',
-                chunks: ['index'],
+                chunks: ['vendor', 'index'],
                 filename: 'index.html',
                 minify: {
                     removeComments: true,
@@ -38,7 +38,6 @@ var plugins = [
             drop_console: true
           }
         }),
-        new webpack.optimize.DedupePlugin(),
 
         // DefinePlugin()方法能创建可以在编译时配置的全局常量，这可能是非常有用的，允许开发版本和编译出的版本具有不同的行为
         // 在这里将环境设置为时'production'时，react会自动去掉没有用到的代码部分，让文件进一步精简
@@ -46,12 +45,17 @@ var plugins = [
          'process.env': {
             NODE_ENV: JSON.stringify('production')
           }
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.bundle.js'
         })
     ];
 
 module.exports = {
     entry: {
-        index: ENTRY
+        index: ENTRY,
+        vendor: ['react','react-dom','react-redux','react-router']
     },
     output: {
         path: DIST,
@@ -74,16 +78,19 @@ module.exports = {
             },
             {
                 test: /\.(less|scss|css)$/,
-                loaders: ['style-loader', 'css-loader?minimize',
-                    {
-                        loader:'postcss-loader',
-                        options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
-                            plugins: (loader) => [
-                                require('autoprefixer')(), //CSS浏览器兼容
-                            ]
+                loaders: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader?minimize',
+                        {
+                            loader:'postcss-loader',
+                            options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+                                plugins: (loader) => [
+                                    require('autoprefixer')(), //CSS浏览器兼容
+                                ]
+                            }
                         }
-                    }
-                ]
+                    ]
+                })
             },
             {
                 test: /\.(png|jpg|gif)$/,

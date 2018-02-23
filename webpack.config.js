@@ -16,6 +16,7 @@ var DIST = path.resolve(ROOT, 'dist');
 module.exports = {
     entry: {
         index: ENTRY,
+        vendor: ['react','react-dom','react-redux','react-router']
         // test: test
     },
 
@@ -65,7 +66,7 @@ module.exports = {
             {
                 title: 'APP',
                 template: 'template.html',
-                chunks: ['index'],
+                chunks: ['vendor', 'index'],
                 filename: 'index.html',
                 minify: {
                     removeComments: true,
@@ -76,6 +77,10 @@ module.exports = {
         new ExtractTextPlugin({
             filename: 'css/[name].css',
             allChunks: true
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.bundle.js'
         })
     ],
 

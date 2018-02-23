@@ -12,13 +12,13 @@ export default class Content extends Component {
     render() {
         return (
             <div className='content'>
-                <p>
+                <p className='fade content-a'>
                     INSPIRATION
                 </p>
-                <p>
+                <p className='fade content-b'>
                     THROUGH
                 </p>
-                <p>
+                <p className='fade content-c'>
                     EXPLORATION
                 </p>
             </div>
