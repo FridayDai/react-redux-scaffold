@@ -17,10 +17,10 @@ export default class Pages extends Component {
     }
 
     componentDidMount() {
-        let currentPage = 1;
         let lock = true;
-
         document.body.addEventListener('mousewheel', (e) => {
+            let currentPage = this.currentPage;
+            
             let delta = e.wheelDelta;
             if(delta > 0) {
                 delta = -1;
@@ -39,7 +39,8 @@ export default class Pages extends Component {
                 if(currentPage > 3) {
                     currentPage = 3;
                 }
-                
+                this.currentPage = currentPage;
+                console.log(this.currentPage);
                 if(this.props.currentPage) {
                     this.props.currentPage(currentPage);
                 }
@@ -50,24 +51,46 @@ export default class Pages extends Component {
                 lock = false;
                 setTimeout(() => {
                     lock = true;
-                }, 1200);
+                }, 1100);
             }
         });
     }
 
+    moveToNextPage () {
+        this.currentPage += 1;
+        
+        if(this.currentPage < 1) {
+            this.currentPage = 1;
+        }
+        if(this.currentPage > 3) {
+            this.currentPage = 3;
+        }
+        console.log(this.currentPage);
+        if(this.props.currentPage) {
+            this.props.currentPage(this.currentPage);
+        }
+        document.getElementById('pages').style.transform = `translate(0px, -${(this.currentPage - 1) * 100}%)`;
+    }
+    
     render() {
         return (
             <div id='pages' className='pages'>
                 <div className='page1'>
                     <NavHeader />
                     <Content />
-                    <div className='box'>
+                    <div 
+                        className='box'
+                        onClick={() => this.moveToNextPage()}
+                    >
                         <span className='arrow-bottom'></span>
                     </div>
                 </div>
                 <div className='page2'>
                     <NavHeaderLiHui />
-                    <div className='box2'>
+                    <div 
+                        className='box2'
+                        onClick={() => this.moveToNextPage()}
+                    >
                         <span className='arrow-bottom'></span>
                     </div>
                 </div>

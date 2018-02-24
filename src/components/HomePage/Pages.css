@@ -41,12 +41,14 @@
     bottom: 12%;
     left: 50%;
     animation: slideUpDown 1s linear infinite;
+    cursor: pointer;
 }
 .box2 {
     position: absolute;
     bottom: -88%;
     left: 50%;
     animation: slideUpDown 1s linear infinite;
+    cursor: pointer;
 }
 .arrow-bottom {
     position: absolute;
