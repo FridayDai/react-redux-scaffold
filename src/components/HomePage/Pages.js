@@ -4,6 +4,8 @@
 import React, {Component} from 'react';
 import './Pages.css';
 import NavHeader from './NavHeader';
+import NavHeaderLiHui from './NavHeaderLiHui';
+import NavHeaderShiZong from './NavHeaderShiZong';
 import Content from './Content';
 
 
@@ -64,12 +66,13 @@ export default class Pages extends Component {
                     </div>
                 </div>
                 <div className='page2'>
+                    <NavHeaderLiHui />
                     <div className='box2'>
                         <span className='arrow-bottom'></span>
                     </div>
                 </div>
                 <div className='page3'>
-                    <h1>敬请期待</h1>
+                    <NavHeaderShiZong />
                 </div>
             </div>
         );

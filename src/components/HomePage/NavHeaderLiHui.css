@@ -1,0 +1,9 @@
+.app-bar-lihui {
+    /*background-color: rgb(43, 40, 70) !important;*/
+    background-color: #66CDAA !important;
+}
+
+.avatar-lihui {
+    background:url(../../images/lihui.jpg) no-repeat;
+    background-size: 40px 40px;
+}

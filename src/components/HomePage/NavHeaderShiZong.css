@@ -1,0 +1,9 @@
+.app-bar-shizong {
+    /*background-color: rgb(43, 40, 70) !important;*/
+    background-color: #36648B !important;
+}
+
+.avatar-shizong {
+    background:url(../../images/shizong.png) no-repeat;
+    background-size: 40px 40px;
+}
