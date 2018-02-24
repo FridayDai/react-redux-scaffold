@@ -3,3 +3,23 @@
     height:100%;
     /*position: relative;*/
 }
+
+.sideBar {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    /*transform: translateY(-125px);*/
+}
+
+.sideBar-item {
+    width: 5px;
+    height: 5px;
+    margin: 18px auto;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.current {
+    width: 10px;
+    height: 10px;
+}

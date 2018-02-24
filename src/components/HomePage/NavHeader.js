@@ -15,7 +15,7 @@ export default class NavHeader extends Component {
         return (
             <div className='nav-header'>
                 <AppBar
-                    style={{'paddingLeft': '36px', 'paddingRight': '36px'}}
+                    style={{'paddingLeft': '36px', 'paddingRight': '36px', 'height': '64px'}}
                     title={
                         <div>
                             <span>I'm FridayDai</span>

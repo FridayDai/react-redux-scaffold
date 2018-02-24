@@ -24,7 +24,28 @@ class HomePage extends Component {
 
         return (
             <div className='homepage-content'>
-                <Pages />
+                <Pages 
+                    currentPage={(currentPage) => {
+                        const doms = document.querySelectorAll('.sideBar-item');
+
+                        for(let i = 0; i < doms.length; i++) {
+                            if(currentPage === (i + 1)) {
+                                if(doms[i].className.indexOf('current') === -1) {
+                                    doms[i].className += ' current';
+                                }
+                            } else {
+                                doms[i].className = 'sideBar-item';
+                            }
+                        }
+                    }}
+                />
+                <div className='sideBar'>
+                    <ul>
+                        <li className='sideBar-item current'></li>
+                        <li className='sideBar-item'></li>
+                        <li className='sideBar-item'></li>
+                    </ul>
+                </div>
             </div>
         );
     }
