@@ -4,8 +4,9 @@
 import React, { Component } from 'react';
 import {fetchTopics, testAction} from '../actions/index';
 import { connect } from 'react-redux';
-import NavHeader from '../components/HomePage/NavHeader.js';
-import Content from '../components/HomePage/Content.js';
+// import NavHeader from '../components/HomePage/NavHeader.js';
+// import Content from '../components/HomePage/Content.js';
+import Pages from '../components/HomePage/Pages';
 import './HomePage.css';
 
 class HomePage extends Component {
@@ -23,8 +24,7 @@ class HomePage extends Component {
 
         return (
             <div className='homepage-content'>
-                <NavHeader />
-                <Content />
+                <Pages />
             </div>
         );
     }
