@@ -1,6 +1,6 @@
-import {REQUEST_TOPICS, RECEIVE_TOPICS, } from '../actions/index';
+import {REQUEST_TOPICS, RECEIVE_TOPICS} from '../actions/index';
 
-const fetchTopicsReducer = (state = {}, action) => {
+export const fetchTopicsReducer = (state = {}, action) => {
     switch (action.type) {
         case REQUEST_TOPICS:
             return Object.assign({}, state, {
@@ -20,4 +20,4 @@ const fetchTopicsReducer = (state = {}, action) => {
     }
 };
 
-export default fetchTopicsReducer;
+// 注意：export可以多个，引入的时候要加{}。export default只能一个，引入的时候不需要加{}。

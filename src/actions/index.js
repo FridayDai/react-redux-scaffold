@@ -2,6 +2,8 @@ import fetch from 'isomorphic-fetch';
 export const TEST_ACTION = 'TEST_ACTION';
 export const REQUEST_TOPICS = 'REQUEST_TOPICS';
 export const RECEIVE_TOPICS = 'RECEIVE_TOPICS';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
 
 export const testAction = () => {
     return () => {
@@ -39,4 +41,28 @@ export const fetchTopics = (tab, page = 1, limit = 10) => {
                 (xhr) => console.log(xhr)
             );
     }
+};
+
+const loginSuccess = (data) => ({
+    'type': LOGIN_SUCCESS,
+    data
+});
+const loginFail = (data) => ({
+    'type': LOGIN_FAIL,
+    data
+});
+
+export const loginAction = (userName, password) => {
+    return (dispatch) => {
+        fetch(`http://shijunjie.me:8080/user/login?userName=${userName}&passWord=${password}`).then(response => response.json())
+            .then((data) => {
+                if(data && data.responseFlag === true) {
+                    dispatch(loginSuccess(data));
+                } else {
+                    dispatch(loginFail(data));
+                }
+            }, (xhr) => {
+                console.log(xhr);
+            });
+    };
 };

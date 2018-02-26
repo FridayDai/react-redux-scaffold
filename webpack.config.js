@@ -90,17 +90,17 @@ module.exports = {
         // hot: true,
         inline: true,
         contentBase: './dist',
-        historyApiFallback: false,
+        historyApiFallback: true, // 用react-router记得要置为true,不然就会去请求路径了
         proxy: {
-            "/getName": {
-                target: "http://106.15.93.13:6789/",
-                secure: false
-            },
-            "/**": {
-                // target: 'http://localhost:8080',
-                target: "https://cnodejs.org/",
-                secure: false
-            }
+            // "/getName": {
+            //     target: "http://106.15.93.13:6789/",
+            //     secure: false
+            // },
+            // "/**": {
+            //     // target: 'http://localhost:8080',
+            //     target: "https://cnodejs.org/",
+            //     secure: false
+            // }
         }
     }
 };

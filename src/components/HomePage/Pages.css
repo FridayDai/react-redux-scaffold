@@ -14,18 +14,18 @@
 
 .page1 {
     background: url("../../images/bg.jpg") no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
 }
 
 .page2 {
     background: url("../../images/middle.jpg") no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     top: 100%;
 }
 
 .page3 {
     background: url("../../images/last.jpg") no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     top: 200%;
 
     /*display: flex;*/
