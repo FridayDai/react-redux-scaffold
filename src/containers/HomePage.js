@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 // import Content from '../components/HomePage/Content.js';
 import Pages from '../components/HomePage/Pages';
 import './HomePage.css';
+import {checkToken} from '../util/common';
 
 class HomePage extends Component {
     constructor(props) {
@@ -17,6 +18,8 @@ class HomePage extends Component {
     componentWillMount() {
         // const {dispatch} = this.props;
         // dispatch(testAction());
+
+        checkToken();
     }
 
     render() {

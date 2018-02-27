@@ -25,7 +25,7 @@ export default class LoginComponent extends Component {
         if(props.loginReducer && props.loginReducer.responseFlag === true) {
             // 登陆成功
             browserHistory.push('/homepage');
-            localStorage.setItem('username', props.loginReducer.responseObject.username);
+            localStorage.setItem('token', `${props.loginReducer.responseObject.username}@@${props.loginReducer.responseObject.password}`);
         } else {
             this.setState({
                 'errorTextForUserName': '用户名可能不存在',
@@ -56,6 +56,7 @@ export default class LoginComponent extends Component {
                             hintText="UserName Field"
                             floatingLabelText="UserName"
                             errorText={this.state.errorTextForUserName}
+                            fullWidth={true}
                             onChange={(e, value) => {
                                 if(!value) {
                                     this.setState({'errorTextForUserName': 'Please Input UserName'});
@@ -72,6 +73,7 @@ export default class LoginComponent extends Component {
                             hintText="Password Field"
                             floatingLabelText="Password"
                             errorText={this.state.errorTextForPassword}
+                            fullWidth={true}
                             type="password"
                             onChange={(e, value) => {
                                 if(!value) {

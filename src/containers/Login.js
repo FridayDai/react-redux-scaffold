@@ -4,10 +4,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import LoginComponent from '../components/Login/LoginComponent';
+import {removeToken} from '../util/common';
 
 class Login extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        removeToken();
     }
 
     render() {
