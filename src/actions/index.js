@@ -1,3 +1,4 @@
+import fetchAction from '../util/fetchAction';
 import fetch from 'isomorphic-fetch';
 export const TEST_ACTION = 'TEST_ACTION';
 export const REQUEST_TOPICS = 'REQUEST_TOPICS';
@@ -54,15 +55,17 @@ const loginFail = (data) => ({
 
 export const loginAction = (userName, password) => {
     return (dispatch) => {
-        fetch(`http://shijunjie.me:8080/user/login?userName=${userName}&passWord=${password}`).then(response => response.json())
-            .then((data) => {
+        fetchAction(`http://shijunjie.me:8080/user/login?userName=${userName}&passWord=${password}`, {'method': 'GET'}).then(
+            (data) => {
                 if(data && data.responseFlag === true) {
                     dispatch(loginSuccess(data));
                 } else {
                     dispatch(loginFail(data));
                 }
-            }, (xhr) => {
+            },
+            (xhr) => {
                 console.log(xhr);
-            });
+            }
+        );
     };
 };
