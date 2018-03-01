@@ -5,6 +5,8 @@ export const REQUEST_TOPICS = 'REQUEST_TOPICS';
 export const RECEIVE_TOPICS = 'RECEIVE_TOPICS';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_FAIL = 'LOGOUT_FAIL';
 
 export const testAction = () => {
     return () => {
@@ -45,11 +47,11 @@ export const fetchTopics = (tab, page = 1, limit = 10) => {
 };
 
 const loginSuccess = (data) => ({
-    'type': LOGIN_SUCCESS,
+    'type': LOGOUT_SUCCESS,
     data
 });
 const loginFail = (data) => ({
-    'type': LOGIN_FAIL,
+    'type': LOGOUT_FAIL,
     data
 });
 
@@ -68,4 +70,30 @@ export const loginAction = (userName, password) => {
             }
         );
     };
+};
+
+const logoutSuccess = (data) => ({
+    'type': LOGIN_SUCCESS,
+    data
+});
+const logoutFail = (data) => ({
+    'type': LOGIN_FAIL,
+    data
+});
+
+export const logoutAction = () => {
+    return (dispatch) => {
+        fetchAction(`http://shijunjie.me:8080/user/logout`, {'method': 'GET'}).then(
+            (data) => {
+                if(data && data.responseFlag === true) {
+                    dispatch(logoutSuccess(data));
+                } else {
+                    dispatch(logoutFail(data));
+                }
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        );
+    }
 };

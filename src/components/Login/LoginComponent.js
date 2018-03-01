@@ -25,7 +25,7 @@ export default class LoginComponent extends Component {
         if(props.loginReducer && props.loginReducer.responseFlag === true) {
             // 登陆成功
             browserHistory.push('/homepage');
-            localStorage.setItem('token', `${props.loginReducer.responseObject.username}@@${props.loginReducer.responseObject.password}`);
+            localStorage.setItem('token', `${props.loginReducer.others.token ? props.loginReducer.others.token : ''}`);
         } else {
             this.setState({
                 'errorTextForUserName': '用户名可能不存在',

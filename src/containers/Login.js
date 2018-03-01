@@ -11,10 +11,6 @@ class Login extends Component {
         super(props);
     }
 
-    componentWillMount() {
-        removeToken();
-    }
-
     render() {
         return(
             <LoginComponent

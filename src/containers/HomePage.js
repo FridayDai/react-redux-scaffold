@@ -27,7 +27,9 @@ class HomePage extends Component {
 
         return (
             <div className='homepage-content'>
-                <Pages 
+                <Pages
+                    props={this.props}
+                    dispatch={dispatch}
                     currentPage={(currentPage) => {
                         const doms = document.querySelectorAll('.sideBar-item');
 

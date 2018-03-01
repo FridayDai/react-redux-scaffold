@@ -76,7 +76,10 @@ export default class Pages extends Component {
         return (
             <div id='pages' className='pages'>
                 <div className='page1'>
-                    <NavHeader />
+                    <NavHeader
+                        props={this.props}
+                        dispatch={this.props.dispatch}
+                    />
                     <Content />
                     <div 
                         className='box'

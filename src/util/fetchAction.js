@@ -8,8 +8,8 @@ const fetchAction = (url, options, data = null) => {
 
     const headers = {
         'Accept': 'application/json',
-        'auth': localStorage.getItem('test') || 'test',
-        'Content-Type': options.contentType || 'application/json'
+        'token': localStorage.getItem('token') || '',
+        'Content-Type': options.contentType || 'application/json;charset=utf-8'
     };
 
     let finalOptions = {};

@@ -1,0 +1,30 @@
+.bodyStyle {
+    position: fixed;
+    left: 50%;
+    display: flex;
+    top: 0px;
+    z-index: 100000;
+    visibility: hidden;
+    transform: translate(-50%, -48px);
+    transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, visibility 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+.open {
+    transform: translate(-50%, 0px);
+    visibility: visible;
+}
+
+.contentStyle {
+    font-family: Roboto, sans-serif;
+    background-color: rgba(0, 0, 0, 0.87);
+    padding: 0px 24px;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 5px;
+    max-width: 568px;
+    min-width: 288px;
+    width: auto;
+    flex-grow: 0;
+    color: white;
+    text-align: center;
+}
