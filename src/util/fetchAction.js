@@ -2,6 +2,7 @@
  * Created by yi.dai on 2018/2/28.
  */
 import fetch from 'isomorphic-fetch';
+import { browserHistory } from 'react-router';
 
 const fetchAction = (url, options, data = null) => {
     const method = options.method || 'GET';
@@ -42,8 +43,8 @@ const fetchAction = (url, options, data = null) => {
             })
             .then(data => {
                 // 登陆验证
-                if(data.hasOwnProperty('retCode')){
-                    console.log('window.location = ?');
+                if(data.hasOwnProperty('errorCode') && data.errorCode === 801){
+                    browserHistory.push('/');
                 }else{
                     resolve(data);
                 }

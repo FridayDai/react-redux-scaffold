@@ -7,6 +7,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import {loginAction} from '../../actions/index';
 import { browserHistory } from 'react-router';
+import { encryptPwd } from '../../util/common';
 
 export default class LoginComponent extends Component {
     constructor(props) {
@@ -34,12 +35,18 @@ export default class LoginComponent extends Component {
         }
     }
 
+    encryptAndEncode(str) {
+        return encodeURIComponent(encryptPwd(str));
+    }
+
     handleLoginIn() {
         const dispatch = this.props.props.dispatch;
 
         if(this.state.UserName && this.state.Password) {
             //action
-            dispatch(loginAction(this.state.UserName, this.state.Password));
+            console.log(encryptPwd(this.state.Password));
+
+            dispatch(loginAction(this.encryptAndEncode(this.state.UserName), this.encryptAndEncode(this.state.Password)));
         }
     }
 
