@@ -16,6 +16,7 @@ render(
                 <IndexRoute component={Login} />
                 <Route path='homepage' component={HomePage} />
                 <Route path='brain' component={Brain} />
+                {/* <Route path='test' component={Test} /> */}
             </Route>
         </Router>
     </Provider>,

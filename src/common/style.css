@@ -3,6 +3,9 @@
     body {
         font-size: 14px !important;
     }
+    .standard-font-size {
+        font-size: 14px !important;
+    }
 }
 
 /* Tablet Styles */
@@ -10,11 +13,17 @@
     body {
         font-size: 16px !important;
     }
+    .standard-font-size {
+        font-size: 16px !important;
+    }
 }
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
     body {
+        font-size: 18px !important;
+    }
+    .standard-font-size {
         font-size: 18px !important;
     }
 }
