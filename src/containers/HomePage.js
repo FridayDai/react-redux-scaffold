@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import Pages from '../components/HomePage/Pages';
 import './HomePage.css';
 import {checkToken} from '../util/common';
+import '../common/style.css';
 
 class HomePage extends Component {
     constructor(props) {

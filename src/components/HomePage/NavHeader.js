@@ -34,11 +34,8 @@ export default class NavHeader extends Component {
             <div className='nav-header'>
                 <AppBar
                     style={{'paddingLeft': '36px', 'paddingRight': '36px', 'height': '64px'}}
-                    title={
-                        <div>
-                            <span>I'm FridayDai</span>
-                        </div>
-                    }
+                    titleStyle={{'fontSize': '16px'}}
+                    title={<span>I'm FridayDai</span>}
                     className='app-bar'
                     iconElementLeft={<Avatar size={40} className="avatar" />}
                     iconStyleRight={{'margin': 0, 'padding': 0, 'lineHeight': '64px', 'color': 'white', 'cursor': 'pointer'}}

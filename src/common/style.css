@@ -1,0 +1,20 @@
+/* Mobile Styles */
+@media screen and (max-width: 400px) {
+    body {
+        font-size: 14px !important;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    body {
+        font-size: 16px !important;
+    }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    body {
+        font-size: 18px !important;
+    }
+}
