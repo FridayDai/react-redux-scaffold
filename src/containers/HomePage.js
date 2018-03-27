@@ -31,27 +31,49 @@ class HomePage extends Component {
                 <Pages
                     props={this.props}
                     dispatch={dispatch}
-                    currentPage={(currentPage) => {
-                        const doms = document.querySelectorAll('.sideBar-item');
-
-                        for(let i = 0; i < doms.length; i++) {
-                            if(currentPage === (i + 1)) {
-                                if(doms[i].className.indexOf('current') === -1) {
-                                    doms[i].className += ' current';
-                                }
-                            } else {
-                                doms[i].className = 'sideBar-item';
-                            }
-                        }
-                    }}
                 />
-                <div className='sideBar'>
-                    <ul>
-                        <li className='sideBar-item current'></li>
-                        <li className='sideBar-item'></li>
-                        <li className='sideBar-item'></li>
-                    </ul>
-                </div>
+                <section className='section-part'>
+                    <h1>Introduction</h1>
+                    <div className='color-grey'>
+                        Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs. Through leveraging generators Koa allows you to ditch callbacks and greatly increase error-handling. Koa does not bundle any middleware within core, and provides an elegant suite of methods that make writing servers fast and enjoyable.
+                    </div>
+                </section>
+                <section className='section-part'>
+                    <h1>Installation</h1>
+                    <div className='color-grey'>
+                        Koa requires node v7.6.0 or higher for ES2015 and async function support.
+                    </div>
+                    <div className='color-grey'>
+                        You can quickly install a supported version of node with your favorite version manager:
+                    </div>
+                    <pre>
+                        <code>
+                            $ nvm install 7 <br></br>
+                            $ npm i koa <br></br>
+                            $ node my-koa-app.js
+                        </code>
+                    </pre>
+                </section>
+                <section className='section-part'>
+                    <h1>Application</h1>
+                    <div className='color-grey'>
+                        A Koa application is an object containing an array of middleware functions which are composed and executed in a stack-like manner upon request. Koa is similar to many other middleware systems that you may have encountered such as Ruby's Rack, Connect, and so on - however a key design decision was made to provide high level "sugar" at the otherwise low-level middleware layer. This improves interoperability, robustness, and makes writing middleware much more enjoyable.
+
+                        This includes methods for common tasks like content-negotiation, cache freshness, proxy support, and redirection among others. Despite supplying a reasonably large number of helpful methods Koa maintains a small footprint, as no middleware are bundled.
+
+                        The obligatory hello world application:
+                    </div>
+                    <pre>
+                        <code> 
+                            const Koa = require('koa'); <br></br>
+                            const app = new Koa(); <br></br>
+                            app.use(async ctx =>  <br></br> 
+                                ctx.body = 'Hello World'; <br></br>
+                            });  <br></br>
+                            app.listen(3000);
+                        </code>
+                    </pre>
+                </section>
             </div>
         );
     }

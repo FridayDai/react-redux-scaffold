@@ -11,17 +11,12 @@ export default class Content extends Component {
 
     render() {
         return (
-            <div className='content'>
-                <p className='fade content-a'>
-                    INSPIRATION
-                </p>
-                <p className='fade content-b'>
-                    THROUGH
-                </p>
-                <p className='fade content-c'>
-                    EXPLORATION
-                </p>
-            </div>
+            <section className='content'>
+                <div className='heading'>
+                    <div className='logo'>koa</div>
+                    <div className='desc'>next generation web framework for node.js</div>
+                </div>
+            </section>
         );
     }
 }

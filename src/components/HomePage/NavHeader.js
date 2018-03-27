@@ -8,6 +8,12 @@ import './NavHeader.css';
 import {logoutAction} from '../../actions/index';
 import { browserHistory } from 'react-router';
 import Message from '../Message/index';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import ContentLink from 'material-ui/svg-icons/content/link';
+import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
 
 export default class NavHeader extends Component {
     constructor(props) {
@@ -38,25 +44,26 @@ export default class NavHeader extends Component {
                     title={<span>I'm FridayDai</span>}
                     className='app-bar'
                     iconElementLeft={<Avatar size={40} className="avatar" />}
-                    iconStyleRight={{'margin': 0, 'padding': 0, 'lineHeight': '64px', 'color': 'white', 'cursor': 'pointer'}}
+                    // iconStyleRight={{'margin': 0, 'padding': 0, 'lineHeight': '64px', 'color': 'white', 'cursor': 'pointer'}}
                     iconElementRight={
-                        <div>
-                            <span
-                                onClick={() => {
-                                    window.open('https://fridaydai.github.io/');
-                                }}
-                            >
-                                BLOG
-                            </span>
-                            <span
-                                style={{'marginLeft': '30px'}}
+                        <IconMenu
+                            iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                            anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+                            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+                        >
+                            <MenuItem 
+                                leftIcon={<ContentLink />} 
+                                primaryText="BLOG"
+                                onClick={() => { window.open('https://fridaydai.github.io/');}}
+                            />
+                            <MenuItem 
+                                leftIcon={<ActionFlightTakeoff />} 
+                                primaryText="LOG OUT"
                                 onClick={() => {
                                     this.props.dispatch(logoutAction());
                                 }}
-                            >
-                                LOG OUT
-                            </span>
-                        </div>
+                            />
+                        </IconMenu>   
                     }
                 />
                 <Message

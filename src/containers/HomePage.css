@@ -1,25 +1,44 @@
+@media screen and (max-width: 420px) {
+    .section-part {
+        padding: 50px 25px;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 421px) and (max-width: 960px) {
+    .section-part {
+        padding: 50px 15%;
+    }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    .section-part {
+        padding: 50px 20%;
+    }
+}
+
 .homepage-content {
     width:100%;
     height:100%;
-    /*position: relative;*/
 }
 
-.sideBar {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    /*transform: translateY(-125px);*/
+.section-part {
+    background: #fdfdfd;
+    box-shadow: inset 0 1px 0 0 white;
+    border-top: 1px solid #ccc;
 }
 
-.sideBar-item {
-    width: 5px;
-    height: 5px;
-    margin: 18px auto;
-    border-radius: 50%;
-    background-color: white;
+.color-grey {
+    color: #33333d;
 }
 
-.current {
-    width: 10px;
-    height: 10px;
+pre {
+    background: white;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 25px;
+    font-size: .9em;
+    font-family: monospace;
+    overflow-x: auto;
 }

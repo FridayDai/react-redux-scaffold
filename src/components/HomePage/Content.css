@@ -1,66 +1,46 @@
 /* Mobile Styles */
-@media screen and (max-width: 400px) {
-    .content {
-        font-size: 16px;
+@media screen and (max-width: 420px) {
+    .logo {
+        font: 75px 'Caflisch Script', sans-serif;
     }
+    .desc {
+    font-size: 14px;
+}
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
-    .content {
-        font-size: 24px;
+@media only screen and (min-width: 421px) and (max-width: 960px) {
+    .logo {
+        font: 120px 'Caflisch Script', sans-serif;
+    }
+    .desc {
+        font-size: 16px;
     }
 }
 
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-    .content {
-        font-size: 36px;
+    .logo {
+        font: 150px 'Caflisch Script', sans-serif;
+    }
+    .desc {
+        font-size: 18px;
     }
 }
 .content {
-    color: white;
+    height: 100%;
+}
+
+.heading {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 100%;
     text-align: center;
-    /* font-size: 45px; */
-    font-weight: 700;
-    letter-spacing: 15px;
+    width: 100%;
+    color: black;
 }
 
-@keyframes fadeIn {
-    0% {opacity: 0; transform: translateY(-30px)}
-    /*25% {opacity: 0.25}*/
-    /*50% {opacity: 0.5; transform: translateY(-10px)}*/
-    /*75% {opacity: 0.75}*/
-    100% {opacity: 1; transform: translateY(0px)}
-}
-
-.fade {
-    opacity: 0;
-}
-
-.content-a {
-    animation: fadeIn 1s linear forwards;
-    /*animation-name: fadeIn;*/
-    /*animation-duration: 1s;*/
-    /*animation-timing-function: linear;*/
-    animation-delay: 0.5s;
-}
-
-.content-b {
-    animation: fadeIn 1s linear forwards;
-    /*animation-name: fadeIn;*/
-    /*animation-duration: 1.5s;*/
-    /*animation-timing-function: linear;*/
-    animation-delay: 1s;
-}
-.content-c {
-    animation: fadeIn 1s linear forwards;
-    /*animation-name: fadeIn;*/
-    /*animation-duration: 2s;*/
-    /*animation-timing-function: linear;*/
-    animation-delay: 1.5s;
+.logo {
+    /* font: 150px 'Italiana', sans-serif; */
+    text-transform: lowercase;
 }

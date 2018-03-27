@@ -49,6 +49,13 @@ export default class LoginComponent extends Component {
             dispatch(loginAction(this.encryptAndEncode(this.state.UserName), this.encryptAndEncode(this.state.Password)));
         }
     }
+    handleLoginInWithoutPassword() {
+        const dispatch = this.props.props.dispatch;
+        const userName = 'test';
+        const password = 'test';
+
+        dispatch(loginAction(this.encryptAndEncode(userName), this.encryptAndEncode(password)));
+    }
 
     render() {
         return(
@@ -98,6 +105,12 @@ export default class LoginComponent extends Component {
                             primary={true}
                             className="login-button"
                             onClick={() => this.handleLoginIn()}
+                        />
+                        <RaisedButton
+                            label="Login In Without Password"
+                            primary={true}
+                            className="login-button"
+                            onClick={() => this.handleLoginInWithoutPassword()}
                         />
                     </div>
                 </div>
