@@ -23,10 +23,11 @@
     height:100%;
 }
 
-.section-part {
+.section-part:nth-of-type(odd) {
     background: #fdfdfd;
     box-shadow: inset 0 1px 0 0 white;
     border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 
 .color-grey {
