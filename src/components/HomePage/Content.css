@@ -44,3 +44,14 @@
     /* font: 150px 'Italiana', sans-serif; */
     text-transform: lowercase;
 }
+.nav-home {
+    position: fixed;
+    right: 25px;
+    margin-top: 15px;
+}
+
+a {
+    text-decoration: none !important;
+    padding: 3px 0;
+    color: #999999 !important;
+}

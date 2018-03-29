@@ -20,18 +20,21 @@ export default class NavHeader extends Component {
         super(props);
 
         this.state = {
-            'open': false
+            'open': false,
+            'isClickLogout': false
         };
     }
 
     componentWillReceiveProps(nextProps) {
         const isLogoutSuccess = nextProps.props.props.loginReducer.responseFlag === true;
-        if(isLogoutSuccess) {
-            browserHistory.push('/');
-            localStorage.removeItem('token');
-        } else {
-            //
-            this.setState({'open': true});
+        if(this.state.isClickLogout) {
+            if (isLogoutSuccess) {
+                browserHistory.push('/');
+                localStorage.removeItem('token');
+            } else {
+                //
+                this.setState({ 'open': true });
+            }
         }
     }
 
@@ -48,7 +51,7 @@ export default class NavHeader extends Component {
                     iconElementRight={
                         <IconMenu
                             iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-                            anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+                            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                             targetOrigin={{ horizontal: 'right', vertical: 'top' }}
                         >
                             <MenuItem 
@@ -60,7 +63,11 @@ export default class NavHeader extends Component {
                                 leftIcon={<ActionFlightTakeoff />} 
                                 primaryText="LOG OUT"
                                 onClick={() => {
-                                    this.props.dispatch(logoutAction());
+                                    this.setState({
+                                        'isClickLogout': true
+                                    }, () => {
+                                        this.props.dispatch(logoutAction());
+                                    })
                                 }}
                             />
                         </IconMenu>   

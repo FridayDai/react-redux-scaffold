@@ -8,12 +8,14 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {loginAction} from '../../actions/index';
 import { browserHistory } from 'react-router';
 import { encryptPwd } from '../../util/common';
+import Message from '../Message/index';
 
 export default class LoginComponent extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            'open': false,
             'UserName': '',
             'errorTextForUserName': '',
             'Password': '',
@@ -47,6 +49,12 @@ export default class LoginComponent extends Component {
             console.log(encryptPwd(this.state.Password));
 
             dispatch(loginAction(this.encryptAndEncode(this.state.UserName), this.encryptAndEncode(this.state.Password)));
+        } else {
+            this.setState({'open': true}, () => {
+                setTimeout(() => {
+                    this.setState({ 'open': false });
+                }, 2000);
+            });
         }
     }
     handleLoginInWithoutPassword() {
@@ -114,6 +122,11 @@ export default class LoginComponent extends Component {
                         />
                     </div>
                 </div>
+                <Message
+                    open={this.state.open}
+                    textMessage={'Logout failed!'}
+                    autoHideDuration={2000}
+                />
             </div>
         );
     }
