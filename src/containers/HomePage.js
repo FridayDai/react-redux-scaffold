@@ -18,9 +18,12 @@ class HomePage extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // const {dispatch} = this.props;
         // dispatch(testAction());
+        document.querySelectorAll('pre code').forEach((item) => {
+            hljs.highlightBlock(item);
+        });
 
         hljs.initHighlightingOnLoad();
         // checkToken();
@@ -57,7 +60,7 @@ app.listen(3000);`;
                         You can quickly install a supported version of node with your favorite version manager:
                     </div>
                     <pre>
-                        <code>
+                        <code class="hljs">
                             $ nvm install 7 <br></br>
                             $ npm i koa <br></br>
                             $ node my-koa-app.js
@@ -74,7 +77,7 @@ app.listen(3000);`;
                         The obligatory hello world application:
                     </div>
                     <pre>
-                        <code> 
+                        <code class="hljs">
                             {test}
                         </code>
                     </pre>
