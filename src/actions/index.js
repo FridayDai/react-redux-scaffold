@@ -7,6 +7,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAIL = 'LOGOUT_FAIL';
+export const GET_DOC_SUCCESS = 'GET_DOC_SUCCESS';
 
 export const testAction = () => {
     return () => {
@@ -90,6 +91,23 @@ export const logoutAction = () => {
                 } else {
                     dispatch(logoutFail(data));
                 }
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        );
+    }
+};
+
+const getDocSuccess = (data) => ({
+    'type': GET_DOC_SUCCESS,
+    data
+});
+export const getDoc = () => {
+    return (dispatch) => {
+        fetchAction(`/doc/2017-08-06-hello-world.markdown`, {'method': 'GET'}).then(
+            (data) => {
+                dispatch(getDocSuccess(data));
             },
             (xhr) => {
                 console.log(xhr);

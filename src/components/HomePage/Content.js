@@ -37,6 +37,7 @@ export default class Content extends Component {
                         <MenuItem primaryText={<a className='anchor' href='#introduction' onClick={() => false}>Introduction</a>} />
                         <MenuItem primaryText={<a className='anchor' href='#installation' onClick={() => false}>Installation</a>} />
                         <MenuItem primaryText={<a className='anchor' href='#application' onClick={() => false}>Application</a>} />
+                        <MenuItem primaryText={<a className='anchor' href='#hello_world' onClick={() => false}>Hello World</a>} />
                     </IconMenu>
                 </div>
                 

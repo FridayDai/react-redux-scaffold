@@ -36,6 +36,10 @@ const fetchAction = (url, options, data = null) => {
         fetch(url, finalOptions)
             .then(response => {
                 if(response.status >= 200 && response.status < 400) {
+                    // 这里做一层特殊处理，其实非常不好，我暂时还没想到解决方法
+                    if(response.url.indexOf('/doc/') > -1) {
+                        return response.text();
+                    }
                     return response.json();
                 } else {
                     throw(response);

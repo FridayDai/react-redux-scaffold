@@ -4,7 +4,8 @@
 import {combineReducers} from 'redux';
 import {fetchTopicsReducer} from './reducers';
 import loginReducer from './loginReducer';
+import docReducer from './docReducer';
 
-const rootReducer = combineReducers({fetchTopicsReducer, loginReducer});
+const rootReducer = combineReducers({fetchTopicsReducer, loginReducer, docReducer});
 
 export default rootReducer;

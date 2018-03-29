@@ -12,10 +12,17 @@ import {checkToken} from '../util/common';
 import '../common/style.css';
 import hljs from 'highlightjs';
 import '../common/highlight-default.css';
+import Md from '../components/ReactMarkdown/index';
+import {getDoc} from '../actions/index';
 
 class HomePage extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount() {
+        const {dispatch} = this.props;
+        dispatch(getDoc());
     }
 
     componentDidMount() {
@@ -30,7 +37,8 @@ class HomePage extends Component {
     }
 
     render() {
-        const {dispatch, fetchTopicsReducer} = this.props;
+        const {dispatch, fetchTopicsReducer, docReducer} = this.props;
+        const docFile = docReducer.docFile || '';
 
         const test = `const Koa = require('koa');
 const app = new Koa(); 
@@ -60,7 +68,7 @@ app.listen(3000);`;
                         You can quickly install a supported version of node with your favorite version manager:
                     </div>
                     <pre>
-                        <code class="hljs">
+                        <code className="hljs">
                             $ nvm install 7 <br></br>
                             $ npm i koa <br></br>
                             $ node my-koa-app.js
@@ -77,10 +85,14 @@ app.listen(3000);`;
                         The obligatory hello world application:
                     </div>
                     <pre>
-                        <code class="hljs">
+                        <code className="hljs">
                             {test}
                         </code>
                     </pre>
+                </section>
+                <section className='section-part'>
+                    <h1 id='hello_world'>Hello World</h1>
+                    <Md source={docFile} />
                 </section>
             </div>
         );
