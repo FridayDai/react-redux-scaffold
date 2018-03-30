@@ -29,6 +29,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(less|scss|css)$/,
+                exclude: ['/node_modules/', DIST],
                 loaders: ['style-loader', 'css-loader?minimize',
                     {
                         loader:'postcss-loader',
@@ -42,7 +43,7 @@ module.exports = {
             },
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
+                exclude: ['/node_modules/', DIST],
                 include: SRC,
                 use: [
                     {
@@ -54,6 +55,7 @@ module.exports = {
                 ]
             },
             {
+                exclude: ['/node_modules/', DIST],
                 test: /\.(png|jpg|gif)$/,
                 use: ['url-loader?limit=10000&name=[name]_[hash:8].[ext]']
             }
@@ -92,7 +94,7 @@ module.exports = {
         contentBase: './dist',
         historyApiFallback: true, // 用react-router记得要置为true,不然就会去请求路径了
         proxy: {
-            "/**": {
+            "/doc": {
                 target: "http://106.15.93.13:8080/",
                 secure: false
             }
