@@ -8,12 +8,12 @@ import { connect } from 'react-redux';
 // import Content from '../components/HomePage/Content.js';
 import Pages from '../components/HomePage/Pages';
 import './HomePage.css';
-import {checkToken} from '../util/common';
+import { browserHistory } from 'react-router';
 import '../common/style.css';
 import hljs from 'highlightjs';
 import '../common/highlight-default.css';
 import Md from '../components/ReactMarkdown/index';
-import {getDoc} from '../actions/index';
+import {getDocList} from '../actions/index';
 
 class HomePage extends Component {
     constructor(props) {
@@ -22,7 +22,7 @@ class HomePage extends Component {
 
     componentWillMount() {
         const {dispatch} = this.props;
-        dispatch(getDoc());
+        dispatch(getDocList());
     }
 
     componentDidMount() {
@@ -38,8 +38,7 @@ class HomePage extends Component {
 
     render() {
         const {dispatch, fetchTopicsReducer, docReducer} = this.props;
-        const docFile = docReducer.docFile || '';
-
+        const docList = docReducer.docList || {};
         const test = `const Koa = require('koa');
 const app = new Koa(); 
 app.use(async ctx => { 
@@ -52,6 +51,7 @@ app.listen(3000);`;
                 <Pages
                     props={this.props}
                     dispatch={dispatch}
+                    docList={docList}
                 />
                 <section className='section-part'>
                     <h1 id='introduction'>Introduction</h1>
@@ -90,10 +90,22 @@ app.listen(3000);`;
                         </code>
                     </pre>
                 </section>
-                <section className='section-part'>
-                    <h1 id='hello_world'>Hello World</h1>
-                    <Md source={docFile} />
-                </section>
+                {
+                    Object.keys(docList).map((doc) => (
+                        <section className='section-part'>
+                            <h1
+                                style={{'cursor': 'pointer'}}
+                                id={doc}
+                                onClick={() => {
+                                    browserHistory.push(`/${doc}`);
+                                }}
+                            >
+                                {doc}
+                            </h1>
+                            <div className='color-grey'>{docList[doc].desc || ''}</div>
+                        </section>
+                    ))
+                }
             </div>
         );
     }

@@ -94,8 +94,8 @@ module.exports = {
         contentBase: './dist',
         historyApiFallback: true, // 用react-router记得要置为true,不然就会去请求路径了
         proxy: {
-            "/doc": {
-                target: "http://106.15.93.13:8080/",
+            "/rest/*": {
+                target: "http://106.15.93.13:6789/",
                 secure: false
             }
         }

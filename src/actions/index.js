@@ -7,6 +7,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAIL = 'LOGOUT_FAIL';
+export const GET_DOC_LIST_SUCCESS = 'GET_DOC_LIST_SUCCESS';
 export const GET_DOC_SUCCESS = 'GET_DOC_SUCCESS';
 
 export const testAction = () => {
@@ -99,13 +100,30 @@ export const logoutAction = () => {
     }
 };
 
+const getDocListSuccess = (data) => ({
+    'type': GET_DOC_LIST_SUCCESS,
+    data
+});
+export const getDocList = () => {
+    return (dispatch) => {
+        fetchAction(`/rest/getDocList`, {'method': 'GET'}).then(
+            (data) => {
+                dispatch(getDocListSuccess(data));
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        );
+    }
+};
+
 const getDocSuccess = (data) => ({
     'type': GET_DOC_SUCCESS,
     data
 });
-export const getDoc = () => {
+export const getDocById = (id) => {
     return (dispatch) => {
-        fetchAction(`/doc/2017-08-06-hello-world.markdown`, {'method': 'GET'}).then(
+        fetchAction(`/rest/getDoc/${id}`, {'method': 'GET'}).then(
             (data) => {
                 dispatch(getDocSuccess(data));
             },

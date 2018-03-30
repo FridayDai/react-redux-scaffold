@@ -18,18 +18,13 @@ export default class Content extends Component {
         };
     }
 
-    componentDidMount() {
-        document.addEventListener('mousedown', () => {
-// 
-        });
-    }
-
     render() {
         return (
             <section className='content'>
                 <div className='nav-home'>
                     <IconMenu
                         menuItemStyle={{'textAlign': 'center'}}
+                        menuStyle={{'maxHeight': '250px'}}
                         iconButtonElement={<IconButton><ActionHome /></IconButton>}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         targetOrigin={{ horizontal: 'right', vertical: 'top' }}
@@ -37,13 +32,17 @@ export default class Content extends Component {
                         <MenuItem primaryText={<a className='anchor' href='#introduction' onClick={() => false}>Introduction</a>} />
                         <MenuItem primaryText={<a className='anchor' href='#installation' onClick={() => false}>Installation</a>} />
                         <MenuItem primaryText={<a className='anchor' href='#application' onClick={() => false}>Application</a>} />
-                        <MenuItem primaryText={<a className='anchor' href='#hello_world' onClick={() => false}>Hello World</a>} />
+                        {
+                            Object.keys(this.props.docList).map((item) => (
+                                <MenuItem primaryText={<a className='anchor' href={`#${item}`} onClick={() => false}>{this.props.docList[item].name || ''}</a>} />
+                            ))
+                        }
                     </IconMenu>
                 </div>
                 
                 <div className='heading'>
-                    <div id='logo' className='logo'>koa</div>
-                    <div className='desc'>next generation web framework for node.js</div>
+                    <div id='logo' className='logo'>doc</div>
+                    <div className='desc'>next generation doc framework for web</div>
                 </div>
             </section>
         );

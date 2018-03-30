@@ -21,7 +21,7 @@ export default class Pages extends Component {
                     props={this.props}
                     dispatch={this.props.dispatch}
                 />
-                <Content />
+                <Content docList={this.props.docList} />
             </div>
         );
     }
