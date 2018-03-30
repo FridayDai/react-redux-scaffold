@@ -45,6 +45,7 @@
     text-transform: lowercase;
 }
 .nav-home {
+    z-index: 999999;
     position: fixed;
     right: 25px;
     margin-top: 15px;
