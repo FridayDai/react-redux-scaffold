@@ -5,7 +5,7 @@ import store from './configStore';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './containers/App';
 import Login from './containers/Login';
-import Doc from './containers/Doc';
+// import Doc from './containers/Doc';
 
 const rootElement = document.getElementById('container');
 
@@ -14,11 +14,11 @@ const HomePage = (location, cb) => {
         cb(null, require('./containers/HomePage.js').default)
     },'HomePage')
 };
-// const Doc = (location, cb) => {
-//     require.ensure([], require => {
-//         cb(null, require('./containers/Doc.js').default)
-//     },'Doc')
-// };
+const Doc = (location, cb) => {
+    require.ensure([], require => {
+        cb(null, require('./containers/Doc.js').default)
+    },'Doc')
+};
 
 render(
     <Provider store={store}>
@@ -26,7 +26,7 @@ render(
             <Route path='/' component={App}>
                 <IndexRoute component={Login} />
                 <Route path='homepage' getComponent={HomePage} />
-                <Route path='/:id' component={Doc} />
+                <Route path='/:id' getComponent={Doc} />
                 {/* <Route path='test' component={Test} /> */}
             </Route>
         </Router>
