@@ -26,6 +26,7 @@ class Doc extends Component {
     }
 
     componentDidMount() {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
         document.querySelectorAll('pre code').forEach((item) => {
             hljs.highlightBlock(item);
         });

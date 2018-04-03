@@ -39,6 +39,12 @@ export default class Content extends Component {
                         }
                     </IconMenu>
                 </div>
+                <div
+                    className='back-to-top'
+                    onClick={() => document.body.scrollTop = document.documentElement.scrollTop = 0}
+                >
+                    top
+                </div>
                 
                 <div className='heading'>
                     <div id='logo' className='logo'>doc</div>

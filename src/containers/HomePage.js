@@ -91,7 +91,7 @@ app.listen(3000);`;
                     </pre>
                 </section>
                 {
-                    Object.keys(docList).map((doc) => (
+                    Object.keys(docList).reverse().map((doc) => (
                         <section className='section-part'>
                             <h1
                                 style={{'cursor': 'pointer'}}
