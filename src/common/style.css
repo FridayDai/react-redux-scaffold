@@ -27,3 +27,11 @@
         font-size: 18px !important;
     }
 }
+
+.center-center {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}

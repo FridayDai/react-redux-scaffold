@@ -14,6 +14,7 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ContentLink from 'material-ui/svg-icons/content/link';
 import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
+import HardwareVideogameAsset from 'material-ui/svg-icons/hardware/videogame-asset';
 
 export default class NavHeader extends Component {
     constructor(props) {
@@ -54,6 +55,11 @@ export default class NavHeader extends Component {
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                             targetOrigin={{ horizontal: 'right', vertical: 'top' }}
                         >
+                            <MenuItem
+                                leftIcon={<HardwareVideogameAsset />}
+                                primaryText="PROFILE"
+                                onClick={() => { browserHistory.push('/profile');}}
+                            />
                             <MenuItem 
                                 leftIcon={<ContentLink />} 
                                 primaryText="BLOG"
