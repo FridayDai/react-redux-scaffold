@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../common/style.css';
+import Phone from '../components/Profile/Phone';
 
 class Profile extends Component {
     constructor(props) {
@@ -13,10 +14,10 @@ class Profile extends Component {
     render() {
         return (
             <div
-                style={{'fontSize': '2em', 'fontWeight': '600'}}
-                className='center-center'
+                style={{'height': '100%', 'backgroundColor': '#e9fbf8'}}
+                // className='center-center'
             >
-                To Be Continue...
+                <Phone />
             </div>
         );
     }
