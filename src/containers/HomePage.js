@@ -95,6 +95,7 @@ app.listen(3000);`;
                         <section className='section-part'>
                             <h1
                                 style={{'cursor': 'pointer'}}
+                                className="hover-underline-animation"
                                 id={doc}
                                 onClick={() => {
                                     browserHistory.push(`/${doc}`);

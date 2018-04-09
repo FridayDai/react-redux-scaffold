@@ -23,6 +23,16 @@ export default class LoginComponent extends Component {
         };
     }
 
+    componentDidMount() {
+        const btn = document.querySelector('.mouse-cursor-gradient-tracking');
+        btn.onmousemove = function(e) {
+            const x = e.pageX - btn.offsetLeft;
+            const y = e.pageY - btn.offsetTop;
+            btn.style.setProperty('--x', x + 'px');
+            btn.style.setProperty('--y', y + 'px');
+        }
+    }
+
     componentWillReceiveProps(newProps){
         const props = newProps.props;
         if(props.loginReducer && props.loginReducer.responseFlag === true) {
@@ -114,12 +124,18 @@ export default class LoginComponent extends Component {
                             className="login-button"
                             onClick={() => this.handleLoginIn()}
                         />
-                        <RaisedButton
-                            label="Login In Without Password"
-                            primary={true}
-                            className="login-button"
+                        <button
+                            className="login-button mouse-cursor-gradient-tracking"
                             onClick={() => this.handleLoginInWithoutPassword()}
-                        />
+                        >
+                            <span>Login In Without Password</span>
+                        </button>
+                        {/*<RaisedButton*/}
+                            {/*label="Login In Without Password"*/}
+                            {/*primary={true}*/}
+                            {/*className="login-button"*/}
+                            {/*onClick={() => this.handleLoginInWithoutPassword()}*/}
+                        {/*/>*/}
                     </div>
                 </div>
                 <Message
