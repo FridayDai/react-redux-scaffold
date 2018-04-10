@@ -3,6 +3,7 @@
  */
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
+import {startLoading, closeLoding} from './common';
 
 const fetchAction = (url, options, data = null) => {
     const method = options.method || 'GET';
@@ -32,9 +33,12 @@ const fetchAction = (url, options, data = null) => {
         };
     }
 
+    const loadingSpin = startLoading();
+
     return new Promise((resolve, reject) => {
         fetch(url, finalOptions)
             .then(response => {
+                closeLoding(loadingSpin);
                 if(response.status >= 200 && response.status < 400) {
                     // 这里做一层特殊处理，其实非常不好，我暂时还没想到解决方法
                     if(response.url.indexOf('/getDoc/') > -1) {

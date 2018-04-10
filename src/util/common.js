@@ -61,3 +61,34 @@ export const whitchType = (data) => {
             return '';
     }
 };
+
+export const startLoading = () => {
+    let div = document.querySelector('.spin-loading');
+    if(!div) {
+        div = document.createElement('div');
+        div.className = 'spin-loading';
+        document.body.appendChild(div);
+    }
+
+    let className = div.className || '';
+    className = className.trim().split(/\s+/);
+    let addClass = `loading-${className.length}-${new Date().getTime()}`;
+    className.push(addClass);
+    div.className = className.join(' ');
+    return addClass;
+};
+
+export const closeLoding = (addClass) => {
+    let div = document.querySelector('.spin-loading');
+    if(div){
+        setTimeout(() => {
+            let className = div.className || '';
+            if(addClass) {
+                className = className.replace(addClass, '');
+                div.className = className;
+            } else {
+                div.className = 'spin-loading';
+            }
+        }, 100);
+    }
+};
