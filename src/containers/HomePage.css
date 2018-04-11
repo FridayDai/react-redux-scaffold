@@ -65,3 +65,43 @@ pre {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
+.label-html {
+    color: #fff;
+    border: none;
+    background: linear-gradient(135deg,#ff4c9f,#ff7b74);
+    padding: 0.5rem;
+    border-radius: 3px;
+    font-size: .7rem;
+    margin-right: 15px;
+}
+
+.label-css {
+    color: #fff;
+    border: none;
+    background: linear-gradient(135deg,#7983ff,#5f9de9);
+    margin-right: 15px;
+    padding: 0.5rem;
+    border-radius: 3px;
+    font-size: .7rem;
+}
+
+.label-js {
+    color: #fff;
+    margin-right: 15px;
+    border: none;
+    background: linear-gradient(135deg,#ffb000,#f58818);
+    padding: 0.5rem;
+    border-radius: 3px;
+    font-size: .7rem;
+}
+
+.label-linux {
+    margin-right: 15px;
+    color: #fff;
+    border: none;
+    background: linear-gradient(135deg,limegreen,greenyellow);
+    padding: 0.5rem;
+    border-radius: 3px;
+    font-size: .7rem;
+}

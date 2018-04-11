@@ -102,7 +102,14 @@ app.listen(3000);`;
                                 }}
                             >
                                 {doc}
+
                             </h1>
+                            <h5>
+                                <span className='label-html'>HTML</span>
+                                <span className='label-css'>CSS</span>
+                                <span className='label-js'>JAVASCRIPT</span>
+                                <span className='label-linux'>Linux</span>
+                            </h5>
                             <div className='color-grey'>{docList[doc].desc || ''}</div>
                         </section>
                     ))
