@@ -16,6 +16,9 @@ import {getDocById} from '../actions/index';
 class Doc extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            'comment': ''
+        };
 
         this.id = window.location.pathname.substr(1);
     }
@@ -44,6 +47,20 @@ class Doc extends Component {
                     <h1>{this.id}</h1>
                     <Md source={docFile} />
                 </section>
+                {/*<section className='section-part'>*/}
+                    {/*<div>*/}
+                        {/*<h5>Your Comment:</h5>*/}
+                        {/*<TextField*/}
+                            {/*hintText="say something..."*/}
+                            {/*onInput={(e) => this.setState({'comment': e.target.value})}*/}
+                        {/*/>*/}
+                        {/*<br/>*/}
+                        {/*<RaisedButton*/}
+                            {/*label="Submit" primary={true}*/}
+                            {/*onClick={() => this.props.dispatch(addComment(this.state.comment))}*/}
+                        {/*/>*/}
+                    {/*</div>*/}
+                {/*</section>*/}
             </div>
         );
     }

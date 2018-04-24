@@ -5,6 +5,7 @@ import store from './configStore';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './containers/App';
 import Login from './containers/Login';
+import Comment from './containers/Comment';
 // import Profile from './containers/Profile';
 
 const rootElement = document.getElementById('container');
@@ -33,6 +34,7 @@ render(
                 <IndexRoute component={Login} />
                 <Route path='homepage' getComponent={HomePage} />
                 <Route path='/profile' getComponent={Profile} />
+                <Route path='/comment' component={Comment} />
                 <Route path='/:id' getComponent={Doc} />
             </Route>
         </Router>

@@ -9,6 +9,10 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAIL = 'LOGOUT_FAIL';
 export const GET_DOC_LIST_SUCCESS = 'GET_DOC_LIST_SUCCESS';
 export const GET_DOC_SUCCESS = 'GET_DOC_SUCCESS';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
+export const GET_COMMENTS = 'GET_COMMENTS';
+export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 
 export const testAction = () => {
     return () => {
@@ -131,5 +135,41 @@ export const getDocById = (id) => {
                 console.log(xhr);
             }
         );
+    }
+};
+
+export const addCommentSuccess = (data) => ({
+        'type': ADD_COMMENT_SUCCESS,
+        data
+});
+
+export const addComment = (comment) => {
+    return (dispatch) => {
+        fetchAction(`/rest/addcomment`, {'method': 'POST'}, {'comment': comment}).then(
+            (data) => {
+                dispatch(addCommentSuccess(data));
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        );
+    }
+};
+
+export const getCommentSuccess = (data) => ({
+    'type': GET_COMMENTS_SUCCESS,
+    'data': data
+});
+
+export const getComments = () => {
+    return (dispatch) => {
+        fetchAction(`/rest/getcomments`, {'method': 'GET'}).then(
+            data => {
+                dispatch(getCommentSuccess(data));
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        )
     }
 };

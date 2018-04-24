@@ -14,6 +14,7 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import ContentLink from 'material-ui/svg-icons/content/link';
 import ActionFlightTakeoff from 'material-ui/svg-icons/action/flight-takeoff';
+import Book from 'material-ui/svg-icons/action/book';
 import HardwareVideogameAsset from 'material-ui/svg-icons/hardware/videogame-asset';
 
 export default class NavHeader extends Component {
@@ -64,6 +65,11 @@ export default class NavHeader extends Component {
                                 leftIcon={<ContentLink />} 
                                 primaryText="BLOG"
                                 onClick={() => { window.open('https://fridaydai.github.io/');}}
+                            />
+                            <MenuItem
+                                leftIcon={<Book />}
+                                primaryText="COMMENT"
+                                onClick={() => { browserHistory.push('/comment');}}
                             />
                             <MenuItem 
                                 leftIcon={<ActionFlightTakeoff />} 

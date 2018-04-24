@@ -1,0 +1,8 @@
+.single-comment {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 3px 1px 20px #ccc;
+    word-break: break-all;
+}

@@ -18,6 +18,13 @@ class Profile extends Component {
                 // className='center-center'
             >
                 <Phone />
+                <div style={{'display': 'none'}}>
+                    <textarea
+                        rows="10"
+                        cols="30"
+                    />
+
+                </div>
             </div>
         );
     }

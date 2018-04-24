@@ -56,13 +56,22 @@ var plugins = [
 module.exports = {
     entry: {
         index: ENTRY,
-        vendor: ['react','react-dom','react-redux','react-router']
+        vendor: ['react','react-dom','react-redux','react-router', 'redux']
     },
     output: {
         path: DIST,
         publicPath: '/',
         filename: 'bundle_[name]_[hash:8].js' //结束最终JS文件
     },
+
+    resolve: {
+        alias: {
+            'action': path.resolve(__dirname, 'src/actions/index.js'),
+            'containers': path.resolve(__dirname, 'src/containers/'),
+            'components': path.resolve(__dirname, 'src/components/')
+        }
+    },
+
     module: {
         loaders: [
             {

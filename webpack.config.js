@@ -16,13 +16,21 @@ var DIST = path.resolve(ROOT, 'dist');
 module.exports = {
     entry: {
         index: ENTRY,
-        vendor: ['react','react-dom','react-redux','react-router']
+        vendor: ['react','react-dom','react-redux','react-router', 'redux']
         // test: test
     },
 
     output: {
         filename: 'bundle_[name]_[hash:8].js',
         path: DIST
+    },
+
+    resolve: {
+        alias: {
+            'action': path.resolve(__dirname, 'src/actions/index.js'),
+            'containers': path.resolve(__dirname, 'src/containers/'),
+            'components': path.resolve(__dirname, 'src/components/')
+        }
     },
 
     module: {
@@ -95,7 +103,7 @@ module.exports = {
         historyApiFallback: true, // 用react-router记得要置为true,不然就会去请求路径了
         proxy: {
             "/rest/*": {
-                target: "http://106.15.93.13:6789/",
+                target: "http://106.15.93.13/",
                 secure: false
             }
         }
