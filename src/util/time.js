@@ -21,6 +21,16 @@ function Miment() {
     return instance;
 }
 
+// function Time() {
+//     const instance = new Date(...arguments);
+//     instance.__proto__ = Time.prototype;
+//     Time.prototype.__proto__ = Date.prototype;
+//     return instance;
+// }
+// Time.prototype.test = function() {
+//     console.log('tttt');
+// };
+
 Miment.prototype.firstDay = firstDay;
 Miment.prototype.format = format;
 Miment.prototype.timestamp = timestamp;

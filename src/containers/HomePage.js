@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import {fetchTopics, testAction} from '../actions/index';
 import { connect } from 'react-redux';
-import Miment from '../util/time';
+import Time from '../util/time';
 import Pages from '../components/HomePage/Pages';
 import './HomePage.css';
 import { browserHistory } from 'react-router';
@@ -32,7 +32,7 @@ class HomePage extends Component {
         });
 
         hljs.initHighlightingOnLoad();
-        console.log(Miment().format('YYYY年MM月DD日 hh:mm:ss SSS'));
+        // console.log(Time().test());
     }
 
     render() {

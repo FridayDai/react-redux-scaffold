@@ -7,7 +7,8 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --progress --hot --watch --color --open",
         "build": "webpack --optimize-minimize",
-        "production": "webpack --config ./webpack.production.config.js --optimize-minimize"
+        "production": "webpack --config ./webpack.production.config.js --optimize-minimize",
+        "plugin": "webpack --config ./webpack.plugin.config.js --optimize-minimize"
     },
     "keywords": [
         "react"
