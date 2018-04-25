@@ -2,16 +2,16 @@
  * Created by yi.dai on 2017/12/18.
  */
 import React, { Component } from 'react';
-import {fetchTopics, testAction} from '../actions/index';
+// import {fetchTopics, testAction} from '../actions/index';
 import { connect } from 'react-redux';
-import Time from '../util/time';
+import Miment from 'miment';
 import Pages from '../components/HomePage/Pages';
 import './HomePage.css';
 import { browserHistory } from 'react-router';
 import '../common/style.css';
 import hljs from 'highlightjs';
 import '../common/highlight-default.css';
-import Md from '../components/ReactMarkdown/index';
+// import Md from '../components/ReactMarkdown/index';
 import {getDocList} from '../actions/index';
 
 class HomePage extends Component {
@@ -32,7 +32,7 @@ class HomePage extends Component {
         });
 
         hljs.initHighlightingOnLoad();
-        // console.log(Time().test());
+        console.log(Miment().format());
     }
 
     render() {

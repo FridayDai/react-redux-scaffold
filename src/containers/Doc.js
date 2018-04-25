@@ -39,7 +39,10 @@ class Doc extends Component {
 
     render() {
         const {docReducer} = this.props;
-        const docFile = docReducer.docFile || '';
+        let docFile = '';
+        if(docReducer.docFile && docReducer.docFile.text) {
+            docFile = docReducer.docFile.text;
+        }
 
         return (
             <div className='homepage-content'>

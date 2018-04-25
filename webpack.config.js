@@ -29,7 +29,8 @@ module.exports = {
         alias: {
             'action': path.resolve(__dirname, 'src/actions/index.js'),
             'containers': path.resolve(__dirname, 'src/containers/'),
-            'components': path.resolve(__dirname, 'src/components/')
+            'components': path.resolve(__dirname, 'src/components/'),
+            'miment': path.resolve(__dirname, 'src/util/time.js')
         }
     },
 
@@ -103,7 +104,8 @@ module.exports = {
         historyApiFallback: true, // 用react-router记得要置为true,不然就会去请求路径了
         proxy: {
             "/rest/*": {
-                target: "http://106.15.93.13/",
+                // target: "http://106.15.93.13/",
+                target: "http://localhost:6789/",
                 secure: false
             }
         }

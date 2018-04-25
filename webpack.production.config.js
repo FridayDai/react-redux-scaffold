@@ -68,7 +68,8 @@ module.exports = {
         alias: {
             'action': path.resolve(__dirname, 'src/actions/index.js'),
             'containers': path.resolve(__dirname, 'src/containers/'),
-            'components': path.resolve(__dirname, 'src/components/')
+            'components': path.resolve(__dirname, 'src/components/'),
+            'miment': path.resolve(__dirname, 'src/util/time.js')
         }
     },
 
