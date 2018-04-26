@@ -7,6 +7,7 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
 import IconButton from 'material-ui/IconButton';
+import { browserHistory } from 'react-router';
 import './Content.css';
 
 export default class Content extends Component {
@@ -48,7 +49,12 @@ export default class Content extends Component {
                 
                 <div className='heading'>
                     <div id='logo' className='logo'>doc</div>
-                    <div className='desc'>next generation doc framework for web</div>
+                    <span
+                        className='write-doc'
+                        onClick={() => browserHistory.push('/writeDoc')}
+                    >
+                        Click Here to Write Doc
+                    </span>
                 </div>
             </section>
         );

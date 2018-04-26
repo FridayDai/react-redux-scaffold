@@ -11,7 +11,6 @@ import { browserHistory } from 'react-router';
 import '../common/style.css';
 import hljs from 'highlightjs';
 import '../common/highlight-default.css';
-// import Md from '../components/ReactMarkdown/index';
 import {getDocList} from '../actions/index';
 
 class HomePage extends Component {
@@ -100,8 +99,7 @@ app.listen(3000);`;
                                     browserHistory.push(`/${doc}`);
                                 }}
                             >
-                                {doc}
-
+                                {docList[doc].name || ''}
                             </h1>
                             <h5>
                                 <span className='label-html'>HTML</span>

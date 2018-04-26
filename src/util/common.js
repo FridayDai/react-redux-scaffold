@@ -92,3 +92,22 @@ export const closeLoding = (addClass) => {
         }, 100);
     }
 };
+
+export const getQueryString = (queryName) => {
+    const queryString = document.location.search;
+    const obj = {};
+    if(queryString.length > 0) {
+        const kv = queryString.substr(1).split('&');
+        for(const item of kv) {
+            const key = item.split('=')[0];
+            const value = item.split('=')[1];
+            obj[key] = value;
+        }
+    }
+
+    if(obj[queryName]) {
+        return obj[queryName];
+    } else {
+        return '';
+    } 
+}

@@ -78,3 +78,14 @@
     color: #35a8ff;
     border: 1px solid #35a8ff;
 }
+
+.write-doc {
+    font-weight: bold;
+    font-size: 30px;
+    color: darkgray;
+    cursor: pointer;
+    border-radius: 35px;
+    padding: 8px;
+    color: #35a8ff;
+    box-shadow: 1px 1px 10px;
+}

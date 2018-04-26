@@ -11,13 +11,18 @@ import '../common/style.css';
 import hljs from 'highlightjs';
 import '../common/highlight-default.css';
 import Md from '../components/ReactMarkdown/index';
-import {getDocById} from '../actions/index';
+import RaisedButton from 'material-ui/RaisedButton';
+import {getDocById, deleteDoc} from '../actions/index';
+import { browserHistory } from 'react-router';
+import Message from '../components/Message/index';
 
 class Doc extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            'comment': ''
+            'comment': '',
+            'open': false,
+            'errMsg': ''
         };
 
         this.id = window.location.pathname.substr(1);
@@ -40,30 +45,48 @@ class Doc extends Component {
     render() {
         const {docReducer} = this.props;
         let docFile = '';
-        if(docReducer.docFile && docReducer.docFile.text) {
+        let docTitle = '';
+        let docDesc = '';
+        let docId = 0;
+        if (docReducer.docFile && docReducer.docFile.code === 10000) {
             docFile = docReducer.docFile.text;
+            docDesc = docReducer.docFile.desc;
+            docTitle = docReducer.docFile.title;
+            docId = docReducer.docFile.id;
+        } else if (docReducer.docFile && docReducer.docFile.code === -10005) {
+            docFile = '不要随便乱写URL';
+            docDesc = '我的网站里有隐藏小片片';
+            docTitle = '被你发现就不好了。。。';
         }
 
         return (
             <div className='homepage-content'>
+                <div style={{'float': 'right', 'display': `${docId === 0 ? 'none' : ''}`}}>
+                    <RaisedButton 
+                        style={{'marginRight': '10px'}}
+                        label="编辑" 
+                        secondary={true}
+                        onClick={() => {
+                            browserHistory.push(`/writeDoc?isEdit=true&id=${docId}`)
+                        }}
+                    />
+                    <RaisedButton 
+                        label="删除" 
+                        secondary={true}
+                        onClick={() => {
+                            this.props.dispatch(deleteDoc(this.id));
+                        }}
+                    />
+                </div> 
                 <section className='section-part'>
-                    <h1>{this.id}</h1>
+                    <h1>{docTitle}</h1>
+                    <h3>{docDesc}</h3>
                     <Md source={docFile} />
                 </section>
-                {/*<section className='section-part'>*/}
-                    {/*<div>*/}
-                        {/*<h5>Your Comment:</h5>*/}
-                        {/*<TextField*/}
-                            {/*hintText="say something..."*/}
-                            {/*onInput={(e) => this.setState({'comment': e.target.value})}*/}
-                        {/*/>*/}
-                        {/*<br/>*/}
-                        {/*<RaisedButton*/}
-                            {/*label="Submit" primary={true}*/}
-                            {/*onClick={() => this.props.dispatch(addComment(this.state.comment))}*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                {/*</section>*/}
+               <Message 
+                    open={this.state.open}
+                    textMessage={this.state.errMsg}
+               />
             </div>
         );
     }

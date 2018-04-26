@@ -1,5 +1,6 @@
 import fetchAction from '../util/fetchAction';
 import fetch from 'isomorphic-fetch';
+import { browserHistory } from 'react-router';
 export const TEST_ACTION = 'TEST_ACTION';
 export const REQUEST_TOPICS = 'REQUEST_TOPICS';
 export const RECEIVE_TOPICS = 'RECEIVE_TOPICS';
@@ -13,6 +14,9 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
+export const SAVE_DOC_SUCCESS = 'SAVE_DOC_SUCCESS';
+export const EDIT_DOC_SUCCESS = 'EDIT_DOC_SUCCESS';
+export const DELETE_DOC_SUCCESS = 'DELETE_DOC_SUCCESS';
 
 export const testAction = () => {
     return () => {
@@ -166,6 +170,66 @@ export const getComments = () => {
         fetchAction(`/rest/getcomments`, {'method': 'GET'}).then(
             data => {
                 dispatch(getCommentSuccess(data));
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        )
+    }
+};
+
+export const saveDocSuccess = (data) => ({
+    'type': SAVE_DOC_SUCCESS,
+    'data': data
+});
+
+export const saveDoc = (title, desc, source) => {
+    return (dispatch) => {
+        fetchAction(`/rest/saveDoc`, { 'method': 'POST' }, {'title': title, 'desc': desc, 'source': source}).then(
+            data => {
+                dispatch(saveDocSuccess(data));
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        )
+    }
+};
+
+export const editDocSuccess = (data) => ({
+    'type': EDIT_DOC_SUCCESS,
+    'data': data
+});
+
+export const editDoc = (id, title, desc, source) => {
+    return (dispatch) => {
+        fetchAction(`/rest/editDoc`, { 'method': 'POST' }, {'id': id, 'title': title, 'desc': desc, 'source': source }).then(
+            data => {
+                if(data.code === 10000) {
+                    dispatch(editDocSuccess(data));
+                    dispatch(getDocById(id));
+                }
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        )
+    }
+};
+
+export const deleteDocSuccess = (data) => ({
+    'type': DELETE_DOC_SUCCESS,
+    'data': data
+});
+
+export const deleteDoc = (id, title, desc, source) => {
+    return (dispatch) => {
+        fetchAction(`/rest/deleteDoc`, { 'method': 'POST' }, { 'id': id }).then(
+            data => {
+                if (data.code === 10000) {
+                    dispatch(deleteDocSuccess(data));
+                    browserHistory.push('/homepage');
+                }
             },
             (xhr) => {
                 console.log(xhr);

@@ -69,6 +69,7 @@ module.exports = {
             'action': path.resolve(__dirname, 'src/actions/index.js'),
             'containers': path.resolve(__dirname, 'src/containers/'),
             'components': path.resolve(__dirname, 'src/components/'),
+            'common': path.resolve(__dirname, 'src/util/common.js'),
             'miment': path.resolve(__dirname, 'src/util/time.js')
         }
     },
