@@ -63,7 +63,7 @@ function format(formatString) {
 
     const year = this.getFullYear();
     const month = form((this.getMonth() + 1));
-    const day = form(this.getDay());
+    const day = form(this.getDate());
     const hour = form(this.getHours());
     const minute = form(this.getMinutes());
     const second = form(this.getSeconds());

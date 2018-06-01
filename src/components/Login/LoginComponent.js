@@ -5,9 +5,9 @@ import React, { Component } from 'react';
 import './LoginComponent.css';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import {loginAction} from '../../actions/index';
+import {newLoginAction, loginAction} from '../../actions/index';
 import { browserHistory } from 'react-router';
-import { encryptPwd } from '../../util/common';
+import { encryptPwd, deleteCookie } from '../../util/common';
 import Message from '../Message/index';
 
 export default class LoginComponent extends Component {
@@ -35,20 +35,16 @@ export default class LoginComponent extends Component {
 
     componentWillReceiveProps(newProps){
         const props = newProps.props;
-        if(props.loginReducer && props.loginReducer.responseFlag === true) {
+        if(props.loginReducer && props.loginReducer.code === 10000) {
             // 登陆成功
             browserHistory.push('/homepage');
-            localStorage.setItem('token', `${props.loginReducer.others.token ? props.loginReducer.others.token : ''}`);
-        } else {
+            localStorage.setItem('token', `${props.loginReducer.token ? props.loginReducer.token : ''}`);
+        } else if(props.loginReducer.code === -10000){
             this.setState({
                 'errorTextForUserName': '用户名可能不存在',
                 'errorTextForPassword': '密码错误'
             });
         }
-    }
-
-    encryptAndEncode(str) {
-        return encodeURIComponent(encryptPwd(str));
     }
 
     handleLoginIn() {
@@ -58,7 +54,7 @@ export default class LoginComponent extends Component {
             //action
             console.log(encryptPwd(this.state.Password));
 
-            dispatch(loginAction(this.encryptAndEncode(this.state.UserName), this.encryptAndEncode(this.state.Password)));
+            dispatch(newLoginAction(this.state.UserName, encryptPwd(this.state.Password)));
         } else {
             this.setState({'open': true}, () => {
                 setTimeout(() => {
@@ -68,11 +64,8 @@ export default class LoginComponent extends Component {
         }
     }
     handleLoginInWithoutPassword() {
-        const dispatch = this.props.props.dispatch;
-        const userName = 'test';
-        const password = 'test';
-
-        dispatch(loginAction(this.encryptAndEncode(userName), this.encryptAndEncode(password)));
+        deleteCookie('token');
+        browserHistory.push('/homepage');
     }
 
     render() {
@@ -130,12 +123,6 @@ export default class LoginComponent extends Component {
                         >
                             <span>Login In Without Password</span>
                         </button>
-                        {/*<RaisedButton*/}
-                            {/*label="Login In Without Password"*/}
-                            {/*primary={true}*/}
-                            {/*className="login-button"*/}
-                            {/*onClick={() => this.handleLoginInWithoutPassword()}*/}
-                        {/*/>*/}
                     </div>
                 </div>
                 <Message

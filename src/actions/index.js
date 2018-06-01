@@ -1,5 +1,6 @@
 import fetchAction from '../util/fetchAction';
 import fetch from 'isomorphic-fetch';
+import { setCookie, getCookie } from '../util/common';
 import { browserHistory } from 'react-router';
 export const TEST_ACTION = 'TEST_ACTION';
 export const REQUEST_TOPICS = 'REQUEST_TOPICS';
@@ -28,34 +29,6 @@ export const testAction = () => {
     }
 };
 
-const requestTopics = (tab, page, limit) => ({
-    'type': REQUEST_TOPICS,
-    tab,
-    page,
-    limit
-});
-const receiveTopics = (tab, page, limit, data) => ({
-    'type': RECEIVE_TOPICS,
-    tab,
-    page,
-    limit,
-    data
-});
-
-export const fetchTopics = (tab, page = 1, limit = 10) => {
-    return (dispatch) => {
-        dispatch(requestTopics(tab, page, limit));
-        fetch(`https://cnodejs.org/api/v1/topics?tab=${tab}&page=${page}&limit=${limit}&mdrender=false`)
-            .then(response => response.json())
-            .then(
-                (data) => {
-                    dispatch(receiveTopics(tab, page, limit, data));
-                },
-                (xhr) => console.log(xhr)
-            );
-    }
-};
-
 const loginSuccess = (data) => ({
     'type': LOGOUT_SUCCESS,
     data
@@ -71,6 +44,26 @@ export const loginAction = (userName, password) => {
             (data) => {
                 if(data && data.responseFlag === true) {
                     dispatch(loginSuccess(data));
+
+                } else {
+                    dispatch(loginFail(data));
+                }
+            },
+            (xhr) => {
+                console.log(xhr);
+            }
+        );
+    };
+};
+
+export const newLoginAction = (userName, password) => {
+    return (dispatch) => {
+        fetchAction(`/rest/login`, {'method': 'POST'}, {'name': userName, 'password': password}).then(
+            (data) => {
+                if(data && data.code === 10000) {
+                    dispatch(loginSuccess(data));
+                    setCookie('token', data.token);
+                    console.log(getCookie('token'));
                 } else {
                     dispatch(loginFail(data));
                 }
