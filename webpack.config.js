@@ -108,6 +108,11 @@ module.exports = {
                 target: "http://106.15.93.13/",
                 // target: "http://localhost:6789/",
                 secure: false
+            },
+            "/img/*": {
+                target: "http://106.15.93.13/",
+                // target: "http://localhost:6789/",
+                secure: false
             }
         }
     }

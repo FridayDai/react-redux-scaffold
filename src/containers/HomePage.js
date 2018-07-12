@@ -12,6 +12,31 @@ import '../common/style.css';
 import hljs from 'highlightjs';
 import '../common/highlight-default.css';
 import {getDocList} from '../actions/index';
+import ImgSlider from '../components/ImgSlider/index';
+
+
+const imgs = [
+    {
+        'src': '/img/img10.png',
+        'alt': '10'
+    },
+    {
+        'src': '/img/monitor.png',
+        'alt': 'monitor'
+    },
+    {
+        'src': '/img/img1.png',
+        'alt': 'img1'
+    },
+    {
+        'src': '/img/img10.png',
+        'alt': '10'
+    },
+    {
+        'src': '/img/monitor.png',
+        'alt': 'monitor'
+    }
+];
 
 class HomePage extends Component {
     constructor(props) {
@@ -57,6 +82,16 @@ app.listen(3000);`;
                         Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs. Through leveraging generators Koa allows you to ditch callbacks and greatly increase error-handling. Koa does not bundle any middleware within core, and provides an elegant suite of methods that make writing servers fast and enjoyable.
                     </div>
                 </section>
+                {/*<section className='section-part'>*/}
+                    {/*<h1 id='introduction'>轮播图</h1>*/}
+                    {/*<ImgSlider*/}
+                        {/*imgs={imgs}*/}
+                        {/*// speed={2}*/}
+                        {/*// autoplay={true}*/}
+                        {/*dots={true}*/}
+                        {/*arrows={true}*/}
+                    {/*/>*/}
+                {/*</section>*/}
                 <section className='section-part'>
                     <h1 id='installation'>Installation</h1>
                     <div className='color-grey'>
