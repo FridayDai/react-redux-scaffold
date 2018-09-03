@@ -12,8 +12,6 @@ import '../common/style.css';
 import hljs from 'highlightjs';
 import '../common/highlight-default.css';
 import {getDocList} from '../actions/index';
-import ImgSlider from '../components/ImgSlider/index';
-
 
 const imgs = [
     {
@@ -43,14 +41,10 @@ class HomePage extends Component {
         super(props);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {dispatch} = this.props;
         dispatch(getDocList());
-    }
 
-    componentDidMount() {
-        // const {dispatch} = this.props;
-        // dispatch(testAction());
         document.querySelectorAll('pre code').forEach((item) => {
             hljs.highlightBlock(item);
         });

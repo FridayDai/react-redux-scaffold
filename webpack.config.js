@@ -16,8 +16,7 @@ var DIST = path.resolve(ROOT, 'dist');
 module.exports = {
     entry: {
         index: ENTRY,
-        vendor: ['react','react-dom','react-redux','react-router', 'redux']
-        // test: test
+        vendor: ['react','react-dom','react-redux','react-router', 'redux', 'isomorphic-fetch']
     },
 
     output: {

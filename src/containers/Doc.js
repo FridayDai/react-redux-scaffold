@@ -28,12 +28,15 @@ class Doc extends Component {
         this.id = window.location.pathname.substr(1);
     }
 
-    componentWillMount() {
-        const {dispatch} = this.props;
-        dispatch(getDocById(this.id));
+    static getDerivedStateFromProps(next, pre) {
+        console.log(next, pre);
+        console.log('getDerivedStateFromProps');
     }
 
     componentDidMount() {
+        const {dispatch} = this.props;
+        dispatch(getDocById(this.id));
+
         document.body.scrollTop = document.documentElement.scrollTop = 0;
         document.querySelectorAll('pre code').forEach((item) => {
             hljs.highlightBlock(item);
