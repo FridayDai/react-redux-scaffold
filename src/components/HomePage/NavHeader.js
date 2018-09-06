@@ -27,6 +27,24 @@ export default class NavHeader extends Component {
         };
     }
 
+    componentDidMount() {
+        const slide = document.querySelector('.app-bar');
+        window.addEventListener('wheel', function(e) {
+            if(e.wheelDelta > 0) {
+                console.log('网上滚');
+                if(slide && slide.classList.contains('slide-up')) {
+                    slide.classList.remove('slide-up');
+                }
+            }
+            if(e.wheelDelta < 0) {
+                console.log('往下滚');
+                if(slide && !slide.classList.contains('slide-up')) {
+                    slide.classList.add('slide-up');
+                }
+            }
+        }, false);
+    }
+
     componentWillReceiveProps(nextProps) {
         const isLogoutSuccess = nextProps.props.props.loginReducer.responseFlag === true;
         if(this.state.isClickLogout) {

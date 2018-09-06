@@ -6,6 +6,7 @@ var webpack = require('webpack');
 var htmlwebpackplugin = require('html-webpack-plugin');
 var cleanwebpackplugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var ROOT = path.resolve(__dirname);
 var SRC = path.resolve(ROOT, 'src');
@@ -93,6 +94,7 @@ module.exports = {
             name: 'vendor',
             filename: 'vendor.bundle.js'
         })
+        // new BundleAnalyzerPlugin()
     ],
 
     devServer: {

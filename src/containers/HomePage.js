@@ -13,29 +13,6 @@ import hljs from 'highlightjs';
 import '../common/highlight-default.css';
 import {getDocList} from '../actions/index';
 
-const imgs = [
-    {
-        'src': '/img/img10.png',
-        'alt': '10'
-    },
-    {
-        'src': '/img/monitor.png',
-        'alt': 'monitor'
-    },
-    {
-        'src': '/img/img1.png',
-        'alt': 'img1'
-    },
-    {
-        'src': '/img/img10.png',
-        'alt': '10'
-    },
-    {
-        'src': '/img/monitor.png',
-        'alt': 'monitor'
-    }
-];
-
 class HomePage extends Component {
     constructor(props) {
         super(props);

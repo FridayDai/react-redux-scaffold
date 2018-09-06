@@ -1,6 +1,8 @@
 .app-bar {
     /*background-color: rgb(43, 40, 70) !important;*/
     background-color: black !important;
+    transition: all  .5s cubic-bezier(0, 1, 0.5, 1);
+    transform: translateY(0);
 }
 
 .avatar {
@@ -12,5 +14,15 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 9999999;
+    /*z-index: 9999999;*/
+    overflow: hidden;
+}
+
+.slide-up {
+    /*消失;*/
+    transform: translateY(-100%);
+}
+
+.test {
+    /*top: 70px;*/
 }

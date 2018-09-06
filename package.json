@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --progress --hot --watch --color --open",
     "build": "webpack --optimize-minimize",
-    "production": "webpack --config ./webpack.production.config.js --optimize-minimize",
+    "production": "webpack --config ./webpack.production.config.js --optimize-minimize -p",
     "plugin": "webpack --config ./webpack.plugin.config.js --optimize-minimize"
   },
   "keywords": [
@@ -24,10 +24,13 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "clean-webpack-plugin": "^0.1.8",
+    "crypto-js": "^3.1.6",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.8.5",
+    "highlightjs": "^9.10.0",
     "html-webpack-plugin": "^2.30.1",
     "isomorphic-fetch": "^2.2.1",
+    "markdown-it": "^8.4.0",
     "material-ui": "^0.20.0",
     "path": "^0.12.7",
     "postcss-loader": "^2.0.9",
@@ -40,10 +43,8 @@
     "redux-thunk": "^2.2.0",
     "url-loader": "^0.5.8",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7",
-    "crypto-js": "^3.1.6",
-    "highlightjs": "^9.10.0",
-    "markdown-it": "^8.4.0"
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
     "css-loader": "^0.28.10",
