@@ -28,10 +28,10 @@ class Doc extends Component {
         this.id = window.location.pathname.substr(1);
     }
 
-    static getDerivedStateFromProps(next, pre) {
-        console.log(next, pre);
-        console.log('getDerivedStateFromProps');
-    }
+    // static getDerivedStateFromProps(next, pre) {
+    //     console.log(next, pre);
+    //     console.log('getDerivedStateFromProps');
+    // }
 
     componentDidMount() {
         const {dispatch} = this.props;
@@ -80,7 +80,7 @@ class Doc extends Component {
                             this.props.dispatch(deleteDoc(this.id));
                         }}
                     />
-                </div> 
+                </div>
                 <section className='section-part'>
                     <h1>{docTitle}</h1>
                     <h3>{docDesc}</h3>

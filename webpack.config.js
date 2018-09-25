@@ -5,19 +5,21 @@ var path = require('path');
 var webpack = require('webpack');
 var htmlwebpackplugin = require('html-webpack-plugin');
 var cleanwebpackplugin = require('clean-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 var ROOT = path.resolve(__dirname);
+var DLL = '/dll/dll.vendor.js';
 var SRC = path.resolve(ROOT, 'src');
 var ENTRY = path.resolve(ROOT, 'src', 'index.js');
 var DIST = path.resolve(ROOT, 'dist');
-// var test = path.resolve(ROOT, 'src', 'reducers', 'reducers.js');
+var manifest = require('./dll/vendor-manifest.json');
 
 module.exports = {
+    mode: 'development',
     entry: {
-        index: ENTRY,
-        vendor: ['react','react-dom','react-redux','react-router', 'redux', 'isomorphic-fetch']
+        index: ENTRY
     },
 
     output: {
@@ -73,28 +75,33 @@ module.exports = {
     },
     devtool: 'eval-source-map',
     plugins: [
-        new cleanwebpackplugin([DIST]),
         new htmlwebpackplugin(
             {
                 title: 'APP',
                 template: 'template.html',
-                chunks: ['vendor', 'index'],
+                chunks: ['index'],
                 filename: 'index.html',
+                vendor: DLL,
+                inject: 'body',
                 minify: {
                     removeComments: true,
                     collapseWhitespace: false,
                 }
             }
         ),
-        new ExtractTextPlugin({
+        new CopyWebpackPlugin([
+            {from: './dll', to:'./dll'}
+        ]),
+        new MiniCssExtractPlugin({
             filename: 'css/[name].css',
             allChunks: true
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendor',
-            filename: 'vendor.bundle.js'
-        })
-        // new BundleAnalyzerPlugin()
+        new webpack.DllReferencePlugin({
+            context: ROOT,
+            manifest
+        }),
+        new BundleAnalyzerPlugin({'analyzerPort': 6699}),
+        new cleanwebpackplugin([DIST]),
     ],
 
     devServer: {

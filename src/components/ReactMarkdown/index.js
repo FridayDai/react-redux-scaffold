@@ -37,6 +37,7 @@ export default class ReactMarkdown extends React.Component {
         if(props.source !== this._lastContent) {
             this._lastContent = props.source;
             const source = this._fixStrongBug(props.source);
+            // const source2Zmag = this._relpaceImage(source);
             let html = md.render(this._replaceMdContent(source));
             html = this._enableHtml(html);
             html = this._replaceLinkTarget(html);
@@ -45,6 +46,15 @@ export default class ReactMarkdown extends React.Component {
             this._initAnchorEvent();
         }
     }
+
+    // _relpaceImage(source){
+    //     const reg = /!\[.*\]\((http:\/\/106.15.93.13\/img\/.*\.png)\)/g;
+    //
+    //
+    //     return source.replace(reg, (src, $1) => {
+    //         return '<Zmage src={$1} />';
+    //     });
+    // }
 
     // 替换掉md中的不能解析的内容，比如图片的路径
     _replaceMdContent(source) {
@@ -155,7 +165,11 @@ export default class ReactMarkdown extends React.Component {
     }
 
     render() {
-        return <div ref='mdContainer' className='markdown-body'></div>;
+        return (
+            <React.Fragment>
+                <div ref='mdContainer' className='markdown-body'></div>
+            </React.Fragment>
+        );
     }
 }
 

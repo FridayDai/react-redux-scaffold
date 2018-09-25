@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --progress --hot --watch --color --open",
+    "dev": "node --max_old_space_size=2048 node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --hot --watch --color --open",
     "build": "webpack --optimize-minimize",
-    "production": "webpack --config ./webpack.production.config.js --optimize-minimize -p",
-    "plugin": "webpack --config ./webpack.plugin.config.js --optimize-minimize"
+    "production": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js --config ./webpack.production.config.js --optimize-minimize -p",
+    "plugin": "webpack --config ./webpack.plugin.config.js --optimize-minimize",
+    "dll": "webpack --config ./webpack.dll.config.js --optimize-minimize"
   },
   "keywords": [
     "react"
@@ -24,11 +25,11 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "clean-webpack-plugin": "^0.1.8",
+    "copy-webpack-plugin": "^4.5.2",
     "crypto-js": "^3.1.6",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "file-loader": "^0.8.5",
+    "file-loader": "^2.0.0",
     "highlightjs": "^9.10.0",
-    "html-webpack-plugin": "^2.30.1",
+    "html-webpack-plugin": "^3.2.0",
     "isomorphic-fetch": "^2.2.1",
     "markdown-it": "^8.4.0",
     "material-ui": "^0.20.0",
@@ -38,17 +39,19 @@
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.6",
     "react-router": "^3.1.0",
+    "react-zmage": "^0.4.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "url-loader": "^0.5.8",
-    "webpack": "^3.10.0",
+    "url-loader": "^1.1.1",
     "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-dev-server": "^2.9.7"
-  },
-  "dependencies": {
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.4",
     "css-loader": "^0.28.10",
     "markdown-it-decorate": "^1.2.2",
-    "style-loader": "^0.20.2"
-  }
+    "mini-css-extract-plugin": "^0.4.3",
+    "style-loader": "^0.20.2",
+    "webpack": "^4.19.1"
+  },
+  "dependencies": {}
 }
