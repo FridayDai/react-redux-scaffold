@@ -25,6 +25,8 @@ export default class NavHeader extends Component {
             'open': false,
             'isClickLogout': false
         };
+
+        this.touchstartY = 0;
     }
 
     componentDidMount() {
@@ -43,6 +45,24 @@ export default class NavHeader extends Component {
                 }
             }
         }, false);
+
+        window.addEventListener('touchstart', function(event) {
+            this.touchstartY = event.changedTouches[0].screenY;//得到手指按下点的Y轴值
+            console.log(this.touchstartY);
+        });
+        window.addEventListener('touchmove', function(event) {
+            if(this.touchstartY > event.changedTouches[0].screenY) {
+                console.log('手指向上，页面向下滚');
+                if(slide && !slide.classList.contains('slide-up')) {
+                    slide.classList.add('slide-up');
+                }
+            } else {
+                if(slide && slide.classList.contains('slide-up')) {
+                    slide.classList.remove('slide-up');
+                }
+            }
+            //不断监听下拉过程中手指的位置
+        });
     }
 
     componentWillReceiveProps(nextProps) {

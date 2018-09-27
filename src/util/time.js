@@ -21,16 +21,6 @@ function Miment() {
     return instance;
 }
 
-// function Time() {
-//     const instance = new Date(...arguments);
-//     instance.__proto__ = Time.prototype;
-//     Time.prototype.__proto__ = Date.prototype;
-//     return instance;
-// }
-// Time.prototype.test = function() {
-//     console.log('tttt');
-// };
-
 Miment.prototype.firstDay = firstDay;
 Miment.prototype.format = format;
 Miment.prototype.timestamp = timestamp;
@@ -44,8 +34,9 @@ function firstDay() {
 function format(formatString) {
     // YYYY-MM-DD hh:mm:ss SSS
     let time;
+
     if(formatString === '' || formatString === null || formatString === undefined) {
-        return Miment().format('YYYY-MM-DD hh:mm:ss');
+        return this.format('YYYY-MM-DD hh:mm:ss');
     }
 
     function form(data) {
@@ -77,6 +68,8 @@ function format(formatString) {
             .replace('mm', minute)
             .replace('ss', second)
             .replace('SSS', millSecond);
+
+
     return time;
 }
 
