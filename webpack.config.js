@@ -100,7 +100,7 @@ module.exports = {
             context: ROOT,
             manifest
         }),
-        new BundleAnalyzerPlugin({'analyzerPort': 6699}),
+        // new BundleAnalyzerPlugin({'analyzerPort': 6699}),
         new cleanwebpackplugin([DIST]),
     ],
 
