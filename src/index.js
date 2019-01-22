@@ -9,6 +9,8 @@ import Comment from './containers/Comment';
 import WriteDoc from './containers/WriteDoc';
 import Loadable from 'react-loadable';
 import Loading from './components/Common/Loading';
+import Sort from './util/Sort';
+import BSTree from './util/Tree';
 
 const rootElement = document.getElementById('container');
 
@@ -27,21 +29,11 @@ const HomePage = Loadable({
     loading: Loading
 });
 
-// const HomePage = (location, cb) => {
-//     require.ensure([], require => {
-//         cb(null, require('./containers/HomePage.js').default)
-//     },'HomePage')
-// };
-
 const Doc = Loadable({
     loader: () => import('./containers/Doc.js'),
     loading: Loading
 });
-// const Doc = (location, cb) => {
-//     require.ensure([], require => {
-//         cb(null, require('./containers/Doc.js').default)
-//     },'Doc')
-// };
+
 const Profile = Loadable({
     loader: () => import('./containers/Profile.js'),
     loading: Loading
@@ -52,6 +44,15 @@ const Profile = Loadable({
 //         cb(null, require('./containers/Profile.js').default)
 //     },'Profile')
 // };
+
+const a = new BSTree();
+a.add(5);
+a.add(1);
+a.add(6);
+a.add(3);
+
+console.log(a.getMax());
+console.log(a.getMin());
 
 render(
     <Provider store={store}>
