@@ -23,36 +23,36 @@ export default class Content extends Component {
     const { docList } = this.props;
 
     return (
-      <section className="content">
-        <div className="nav-home">
+      <section className='content'>
+        <div className='nav-home'>
           <IconMenu
-            menuItemStyle={{ textAlign: 'center' }}
-            menuStyle={{ maxHeight: '250px' }}
+            menuItemStyle={{ 'textAlign': 'center' }}
+            menuStyle={{ 'maxHeight': '250px' }}
             iconButtonElement={<IconButton><ActionHome /></IconButton>}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+            anchorOrigin={{ 'horizontal': 'right', 'vertical': 'bottom' }}
+            targetOrigin={{ 'horizontal': 'right', 'vertical': 'top' }}
           >
-            <MenuItem primaryText={<a className="anchor" href="#introduction" onClick={() => false}>Introduction</a>} />
-            <MenuItem primaryText={<a className="anchor" href="#installation" onClick={() => false}>Installation</a>} />
-            <MenuItem primaryText={<a className="anchor" href="#application" onClick={() => false}>Application</a>} />
+            <MenuItem primaryText={<a className='anchor' href='#introduction' onClick={() => false}>Introduction</a>} />
+            <MenuItem primaryText={<a className='anchor' href='#installation' onClick={() => false}>Installation</a>} />
+            <MenuItem primaryText={<a className='anchor' href='#application' onClick={() => false}>Application</a>} />
             {
               Object.keys(docList).map(item => (
-                <MenuItem primaryText={<a className="anchor" href={`#${item}`} onClick={() => false}>{docList[item].name || ''}</a>} />
+                <MenuItem primaryText={<a className='anchor' href={`#${item}`} onClick={() => false}>{docList[item].name || ''}</a>} />
               ))
             }
           </IconMenu>
         </div>
         <div
-          className="back-to-top"
+          className='back-to-top'
           onClick={() => { document.body.scrollTop = 0; document.documentElement.scrollTop = 0; }}
         >
           top
         </div>
 
-        <div className="heading">
-          <div id="logo" className="logo">doc</div>
+        <div className='heading'>
+          <div id='logo' className='logo'>doc</div>
           <span
-            className="write-doc"
+            className='write-doc'
             onClick={() => browserHistory.push('/writeDoc')}
           >
             Click Here to Write Doc

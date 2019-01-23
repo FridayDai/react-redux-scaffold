@@ -9,23 +9,23 @@ export default class Message extends Component {
     super(props);
 
     this.state = {
-      open: this.props.open || false,
+      'open': this.props.open || false
     };
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      open: nextProps.open,
+      'open': nextProps.open
     }, () => {
       const autoHideDuration = nextProps.autoHideDuration || 2000;
       if (this.state.open) {
         document.getElementById('messageComponent').className += ' open';
         setTimeout(() => {
           document.getElementById('messageComponent').className = 'bodyStyle';
-          this.setState({ open: false });
+          this.setState({ 'open': false });
         }, autoHideDuration);
       } else {
-        this.setState({ open: false });
+        this.setState({ 'open': false });
         document.getElementById('messageComponent').className = 'bodyStyle';
       }
     });
@@ -33,8 +33,8 @@ export default class Message extends Component {
 
   render() {
     return (
-      <div id="messageComponent" className="bodyStyle">
-        <div className="contentStyle">
+      <div id='messageComponent' className='bodyStyle'>
+        <div className='contentStyle'>
           {this.props.textMessage || ''}
         </div>
       </div>

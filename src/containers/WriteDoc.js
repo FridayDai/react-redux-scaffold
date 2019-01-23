@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './WriteDoc.css';
-import Md from '../components/ReactMarkdown/index';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import Message from '../components/Message/index';
-import { saveDoc, getDocById, editDoc} from 'action';
+import { saveDoc, getDocById, editDoc } from 'action';
 import { getQueryString } from 'common';
 import { browserHistory } from 'react-router';
 import miment from 'miment';
+import Message from '../components/Message/index';
+import Md from '../components/ReactMarkdown/index';
 
 const template = `---
 FridayDai say: <br>
@@ -263,6 +263,7 @@ class WriteDoc extends Component {
             'firstFlag': true
         };
     }
+
     componentWillMount() {
         if (this.state.id && !isNaN(parseInt(this.state.id))) {
             // dispatch
@@ -271,7 +272,8 @@ class WriteDoc extends Component {
     }
 
     componentDidMount() {
-        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -301,7 +303,7 @@ class WriteDoc extends Component {
 
     saveDoc() {
         if(!this.state.title) {
-            this.setState({ 'open': true, 'errMsg': 'please Input title'});
+            this.setState({ 'open': true, 'errMsg': 'please Input title' });
             setTimeout(() => {
                 this.setState({ 'open': false, 'errMsg': '' });
             }, 2000);
@@ -332,38 +334,37 @@ class WriteDoc extends Component {
 
     render() {
         return (
-            <div className="write-doc-content">
-                <div className="write-doc-header">
-                    <span className="span-header">Title:</span>   
+            <div className='write-doc-content'>
+                <div className='write-doc-header'>
+                    <span className='span-header'>Title:</span>   
                     <TextField
                         value={this.state.title}
-                        onChange={(e) => this.setState({'title': e.target.value})}
-                        hintText="Input Title"
+                        onChange={e => this.setState({ 'title': e.target.value })}
+                        hintText='Input Title'
                     />
-                    <span className="span-header">Description:</span> 
+                    <span className='span-header'>Description:</span> 
                     <TextField
                         value={this.state.desc}
-                        onChange={(e) => this.setState({ 'desc': e.target.value })}
-                        hintText="Input Description"
+                        onChange={e => this.setState({ 'desc': e.target.value })}
+                        hintText='Input Description'
                     />
                     <RaisedButton 
-                        label="Save"
+                        label='Save'
                         primary={true} 
-                        style={{'float': 'right'}}
+                        style={{ 'float': 'right' }}
                         onClick={() => this.saveDoc()}
                     />
                 </div>
-                <div className="text-content">
-                    <div className="text-field">
+                <div className='text-content'>
+                    <div className='text-field'>
                         <textarea
                             value={this.state.source}
-                            className="text-area"
-                            onInput={(e) => this.setState({ 'source': e.target.value })}
-                        >
-                        </textarea>
+                            className='text-area'
+                            onInput={e => this.setState({ 'source': e.target.value })}
+                        />
                     </div>
-                    <div className="text-parse">
-                        <Md source={this.state.source}></Md>
+                    <div className='text-parse'>
+                        <Md source={this.state.source} />
                     </div>
                 </div>
                 <Message
@@ -375,8 +376,6 @@ class WriteDoc extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state;
-};
+const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(WriteDoc)
+export default connect(mapStateToProps)(WriteDoc);

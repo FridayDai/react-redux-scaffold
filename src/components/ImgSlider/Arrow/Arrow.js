@@ -14,9 +14,9 @@ export default class Arrow extends Component {
 
   render() {
     return (
-      <div className="imgSlider-arrow-wrapper">
-        <span className="arrow-left" />
-        <span className="arrow-right" />
+      <div className='imgSlider-arrow-wrapper'>
+        <span className='arrow-left' />
+        <span className='arrow-right' />
       </div>
     );
   }

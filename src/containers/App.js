@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 
 // import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class App extends Component {
+class App extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -13,14 +13,12 @@ class App extends Component {
     render() {
         return (
             <MuiThemeProvider>
-                <div className="app-content">{this.props.children}</div>
+                <div className='app-content'>{this.props.children}</div>
             </MuiThemeProvider>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-};
+const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);

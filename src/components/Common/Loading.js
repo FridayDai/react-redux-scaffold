@@ -13,9 +13,10 @@ export default class Loading extends Component {
 
   render() {
     return (
-      <div style={{
-        fontSize: '16px', background: 'red', width: '200px', height: '200px',
-      }}
+      <div
+        style={{
+          'fontSize': '16px', 'background': 'red', 'width': '200px', 'height': '200px'
+        }}
       >
         {'hello'}
       </div>

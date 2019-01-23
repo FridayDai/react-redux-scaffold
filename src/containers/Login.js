@@ -1,12 +1,11 @@
 /**
  * Created by yi.dai on 2018/2/26.
  */
-import React, {Component} from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import LoginComponent from '../components/Login/LoginComponent';
-import {removeToken} from '../util/common';
 
-class Login extends Component {
+class Login extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -20,8 +19,6 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state;
-};
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(Login);

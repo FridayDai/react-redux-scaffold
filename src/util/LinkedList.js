@@ -51,8 +51,4 @@ export default class LinkedList {
 
     preNode.next = currentNode.next;
   }
-
-  reverse() {
-
-  }
 }

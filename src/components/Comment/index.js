@@ -38,7 +38,7 @@ export default class SingleComment extends Component {
 
   render() {
     return (
-      <div className="single-comment">
+      <div className='single-comment'>
         <h5>
             标题：
           {this.props.title}

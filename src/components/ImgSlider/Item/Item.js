@@ -6,7 +6,7 @@ import React, { PureComponent } from 'react';
 export default class Item extends PureComponent {
   render() {
     return (
-      <div className="slider-item" style={{ left: this.props.left }}>
+      <div className='slider-item' style={{ 'left': this.props.left }}>
         <img
           src={this.props.src}
           alt={this.props.alt}
@@ -20,10 +20,10 @@ export default class Item extends PureComponent {
 }
 
 Item.defaultProps = {
-  src: '',
-  alt: '',
-  width: '200px',
-  height: '160px',
-  imgStyle: {},
-  count: 1,
+  'src': '',
+  'alt': '',
+  'width': '200px',
+  'height': '160px',
+  'imgStyle': {},
+  'count': 1
 };

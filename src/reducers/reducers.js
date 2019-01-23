@@ -1,4 +1,4 @@
-import {REQUEST_TOPICS, RECEIVE_TOPICS} from '../actions/index';
+import { REQUEST_TOPICS, RECEIVE_TOPICS } from '../actions/index';
 
 export const fetchTopicsReducer = (state = {}, action) => {
     switch (action.type) {

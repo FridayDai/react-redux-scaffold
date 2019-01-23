@@ -28,16 +28,16 @@ export const testAction = () => () => {
 };
 
 const loginSuccess = data => ({
-  type: LOGOUT_SUCCESS,
-  data,
+  'type': LOGOUT_SUCCESS,
+  data
 });
 const loginFail = data => ({
-  type: LOGOUT_FAIL,
-  data,
+  'type': LOGOUT_FAIL,
+  data
 });
 
 export const loginAction = (userName, password) => (dispatch) => {
-  fetchAction(`http://shijunjie.me:8080/user/login?userName=${userName}&passWord=${password}`, { method: 'GET' }).then(
+  fetchAction(`http://shijunjie.me:8080/user/login?userName=${userName}&passWord=${password}`, { 'method': 'GET' }).then(
     (data) => {
       if (data && data.responseFlag === true) {
         dispatch(loginSuccess(data));
@@ -52,7 +52,7 @@ export const loginAction = (userName, password) => (dispatch) => {
 };
 
 export const newLoginAction = (userName, password) => (dispatch) => {
-  fetchAction('/rest/login', { method: 'POST' }, { name: userName, password }).then(
+  fetchAction('/rest/login', { 'method': 'POST' }, { 'name': userName, password }).then(
     (data) => {
       if (data && data.code === 10000) {
         dispatch(loginSuccess(data));
@@ -69,16 +69,16 @@ export const newLoginAction = (userName, password) => (dispatch) => {
 };
 
 const logoutSuccess = data => ({
-  type: LOGIN_SUCCESS,
-  data,
+  'type': LOGIN_SUCCESS,
+  data
 });
 const logoutFail = data => ({
-  type: LOGIN_FAIL,
-  data,
+  'type': LOGIN_FAIL,
+  data
 });
 
 export const logoutAction = () => (dispatch) => {
-  fetchAction('http://shijunjie.me:8080/user/logout', { method: 'GET' }).then(
+  fetchAction('http://shijunjie.me:8080/user/logout', { 'method': 'GET' }).then(
     (data) => {
       if (data && data.responseFlag === true) {
         dispatch(logoutSuccess(data));
@@ -93,11 +93,11 @@ export const logoutAction = () => (dispatch) => {
 };
 
 const getDocListSuccess = data => ({
-  type: GET_DOC_LIST_SUCCESS,
-  data,
+  'type': GET_DOC_LIST_SUCCESS,
+  data
 });
 export const getDocList = () => (dispatch) => {
-  fetchAction('/rest/getDocList', { method: 'GET' }).then(
+  fetchAction('/rest/getDocList', { 'method': 'GET' }).then(
     (data) => {
       dispatch(getDocListSuccess(data));
     },
@@ -108,11 +108,11 @@ export const getDocList = () => (dispatch) => {
 };
 
 const getDocSuccess = data => ({
-  type: GET_DOC_SUCCESS,
-  data,
+  'type': GET_DOC_SUCCESS,
+  data
 });
 export const getDocById = id => (dispatch) => {
-  fetchAction(`/rest/getDoc/${id}`, { method: 'GET' }).then(
+  fetchAction(`/rest/getDoc/${id}`, { 'method': 'GET' }).then(
     (data) => {
       dispatch(getDocSuccess(data));
     },
@@ -123,12 +123,12 @@ export const getDocById = id => (dispatch) => {
 };
 
 export const addCommentSuccess = data => ({
-  type: ADD_COMMENT_SUCCESS,
-  data,
+  'type': ADD_COMMENT_SUCCESS,
+  data
 });
 
 export const addComment = comment => (dispatch) => {
-  fetchAction('/rest/addcomment', { method: 'POST' }, { comment }).then(
+  fetchAction('/rest/addcomment', { 'method': 'POST' }, { comment }).then(
     (data) => {
       dispatch(addCommentSuccess(data));
     },
@@ -139,12 +139,12 @@ export const addComment = comment => (dispatch) => {
 };
 
 export const getCommentSuccess = data => ({
-  type: GET_COMMENTS_SUCCESS,
-  data,
+  'type': GET_COMMENTS_SUCCESS,
+  data
 });
 
 export const getComments = () => (dispatch) => {
-  fetchAction('/rest/getcomments', { method: 'GET' }).then(
+  fetchAction('/rest/getcomments', { 'method': 'GET' }).then(
     (data) => {
       dispatch(getCommentSuccess(data));
     },
@@ -155,12 +155,12 @@ export const getComments = () => (dispatch) => {
 };
 
 export const saveDocSuccess = data => ({
-  type: SAVE_DOC_SUCCESS,
-  data,
+  'type': SAVE_DOC_SUCCESS,
+  data
 });
 
 export const saveDoc = (title, desc, source) => (dispatch) => {
-  fetchAction('/rest/saveDoc', { method: 'POST' }, { title, desc, source }).then(
+  fetchAction('/rest/saveDoc', { 'method': 'POST' }, { title, desc, source }).then(
     (data) => {
       dispatch(saveDocSuccess(data));
     },
@@ -171,13 +171,13 @@ export const saveDoc = (title, desc, source) => (dispatch) => {
 };
 
 export const editDocSuccess = data => ({
-  type: EDIT_DOC_SUCCESS,
-  data,
+  'type': EDIT_DOC_SUCCESS,
+  data
 });
 
 export const editDoc = (id, title, desc, source) => (dispatch) => {
-  fetchAction('/rest/editDoc', { method: 'POST' }, {
-    id, title, desc, source,
+  fetchAction('/rest/editDoc', { 'method': 'POST' }, {
+    id, title, desc, source
   }).then(
     (data) => {
       if (data.code === 10000) {
@@ -192,12 +192,12 @@ export const editDoc = (id, title, desc, source) => (dispatch) => {
 };
 
 export const deleteDocSuccess = data => ({
-  type: DELETE_DOC_SUCCESS,
-  data,
+  'type': DELETE_DOC_SUCCESS,
+  data
 });
 
 export const deleteDoc = id => (dispatch) => {
-  fetchAction('/rest/deleteDoc', { method: 'POST' }, { id }).then(
+  fetchAction('/rest/deleteDoc', { 'method': 'POST' }, { id }).then(
     (data) => {
       if (data.code === 10000) {
         dispatch(deleteDocSuccess(data));

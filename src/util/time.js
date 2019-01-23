@@ -1,10 +1,11 @@
 /**
  * Created by yi.dai on 2018/4/20.
  */
+/* eslint-disable */
 // moment.js太大了，看了miment，所以自己试试写一个小而美的时间插件
 // 需要考虑polyfill情况
 Object.setPrototypeOf = Object.setPrototypeOf
-    || function (obj, proto) {
+    || function(obj, proto) {
       obj.__proto__ = proto;
       return obj;
     };

@@ -11,7 +11,7 @@ import Content from './Content';
 export default class Pages extends PureComponent {
   render() {
     return (
-      <div id="pages" className="pages">
+      <div id='pages' className='pages'>
         <NavHeader
           props={this.props}
           dispatch={this.props.dispatch}

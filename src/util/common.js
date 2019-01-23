@@ -21,14 +21,14 @@ export const encryptPwd = (pwd) => {
   return CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(pwd),
     CryptoJS.enc.Utf8.parse(KEY),
     {
-      padding: CryptoJS.pad.Pkcs7,
-      mode: CryptoJS.mode.ECB,
+      'padding': CryptoJS.pad.Pkcs7,
+      'mode': CryptoJS.mode.ECB
     }).toString();
 };
 
 export const decryptPwd = (pwd) => {
   const key = CryptoJS.enc.Utf8.parse('abcdefgabcdefg12');
-  const decrypt = CryptoJS.AES.decrypt(pwd, key, { mode: CryptoJS.mode.ECB, padding: CryptoJS.pad.Pkcs7 });
+  const decrypt = CryptoJS.AES.decrypt(pwd, key, { 'mode': CryptoJS.mode.ECB, 'padding': CryptoJS.pad.Pkcs7 });
   return CryptoJS.enc.Utf8.stringify(decrypt).toString();
 };
 

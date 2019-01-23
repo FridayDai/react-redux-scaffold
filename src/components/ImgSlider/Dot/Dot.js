@@ -8,12 +8,12 @@ export default class Dot extends Component {
     super(props);
 
     this.state = {
-      choosed: 0,
+      'choosed': 0
     };
   }
 
   handleDotClick(i) {
-    this.setState({ choosed: i });
+    this.setState({ 'choosed': i });
     this.props.callback(i);
   }
 
@@ -30,7 +30,7 @@ export default class Dot extends Component {
     }
 
     return (
-      <div className="imgSlider-dot-wrapper">
+      <div className='imgSlider-dot-wrapper'>
         {dotNodes}
       </div>
     );
@@ -38,6 +38,6 @@ export default class Dot extends Component {
 }
 
 Dot.defaultProps = {
-  count: 0,
-  choosed: -1,
+  'count': 0,
+  'choosed': -1
 };

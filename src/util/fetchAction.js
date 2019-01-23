@@ -9,27 +9,27 @@ const fetchAction = (url, options, data = null) => {
   const method = options.method || 'GET';
 
   const headers = {
-    Accept: 'application/json',
-    token: localStorage.getItem('token') || '',
-    'Content-Type': options.contentType || 'application/json;charset=utf-8',
+    'Accept': 'application/json',
+    'token': localStorage.getItem('token') || '',
+    'Content-Type': options.contentType || 'application/json;charset=utf-8'
   };
 
   let finalOptions = {};
 
   if (method.toUpperCase() === 'GET') {
     finalOptions = {
-      method: 'GET',
+      'method': 'GET',
       headers,
-      cache: 'no-cache',
+      'cache': 'no-cache'
       // 'credentials': 'include' // 跨域带cookie 需要后端开启"Access-Control-Allow-Credentials: true"
     };
   } else if (method.toUpperCase() === 'POST') {
     finalOptions = {
-      method: 'POST',
+      'method': 'POST',
       headers,
-      cache: 'no-cache',
+      'cache': 'no-cache',
       // 'credentials': 'include', // 跨域带cookie 需要后端开启"Access-Control-Allow-Credentials: true"
-      body: JSON.stringify(data),
+      'body': JSON.stringify(data)
     };
   }
 
@@ -48,12 +48,12 @@ const fetchAction = (url, options, data = null) => {
         }
         throw (response);
       })
-      .then((data) => {
+      .then((data1) => {
         // 登陆验证
-        if (data.hasOwnProperty('errorCode') && data.errorCode === 801) {
+        if (data1.hasOwnProperty('errorCode') && data1.errorCode === 801) {
           browserHistory.push('/');
         } else {
-          resolve(data);
+          resolve(data1);
         }
       })
       .catch((error) => {

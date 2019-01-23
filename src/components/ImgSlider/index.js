@@ -12,7 +12,7 @@ export default class ImgSlider extends Component {
     super(props);
 
     this.state = {
-      move: 0, // 像左边移动的个数
+      'move': 0 // 像左边移动的个数
     };
   }
 
@@ -23,7 +23,7 @@ export default class ImgSlider extends Component {
   render() {
     const count = this.props.imgs.length;
     return (
-      <div className="imgSlider">
+      <div className='imgSlider'>
         {
           this.props.imgs.map((img, index) => (
             <Item
@@ -55,7 +55,7 @@ export default class ImgSlider extends Component {
 }
 
 ImgSlider.defaultProps = {
-  imgs: [],
-  dots: false,
-  arrows: false,
+  'imgs': [],
+  'dots': false,
+  'arrows': false
 };

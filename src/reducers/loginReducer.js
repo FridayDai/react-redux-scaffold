@@ -1,7 +1,9 @@
 /**
  * Created by yi.dai on 2018/2/26.
  */
-import {LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL} from '../actions/index';
+import {
+LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT_SUCCESS, LOGOUT_FAIL
+} from '../actions/index';
 
 const loginActionReducer = (state = {}, action) => {
     switch (action.type) {

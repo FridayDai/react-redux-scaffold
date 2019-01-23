@@ -1,10 +1,10 @@
 /**
  * Created by yi.dai on 2018/4/13.
  */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SingleComment from 'components/Comment/index.js';
-import {addComment, addCommentSuccess, getComments} from 'action';
+import SingleComment from 'components/Comment/index';
+import { getComments } from 'action';
 
 class Comment extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class Comment extends Component {
     }
 
     componentWillMount() {
-        const {dispatch} = this.props;
+        const { dispatch } = this.props;
 
         dispatch(getComments());
     }
@@ -30,11 +30,15 @@ class Comment extends Component {
     render() {
         return (
             <div
-                style={{'display': 'flex',
-                    'flexFlow': 'row wrap', 'justifyContent': 'flex-start', 'alignItems': 'flex-start'}}
+                style={{
+'display': 'flex',
+                    'flexFlow': 'row wrap',
+'justifyContent': 'flex-start',
+'alignItems': 'flex-start'
+}}
             >
                 {
-                    this.state.comments.map((item) => (
+                    this.state.comments.map(item => (
                         <SingleComment
                             key={item.id}
                             title={item.title}
@@ -50,8 +54,6 @@ class Comment extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return state
-};
+const mapStateToProps = state => state;
 
 export default connect(mapStateToProps)(Comment);

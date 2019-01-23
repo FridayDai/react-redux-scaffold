@@ -1,3 +1,4 @@
+/* eslint-disable */
 import './dpl.css';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -6,7 +7,7 @@ import markdownIt from 'markdown-it';
 import './xcode.css';
 
 const md = markdownIt({
-  html: true,
+  'html': true,
   highlight(str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
@@ -16,7 +17,7 @@ const md = markdownIt({
       }
     }
     return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`;
-  },
+  }
 });
 
 export default class ReactMarkdown extends React.Component {
@@ -165,15 +166,15 @@ export default class ReactMarkdown extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div ref="mdContainer" className="markdown-body" />
+        <div ref='mdContainer' className='markdown-body' />
       </React.Fragment>
     );
   }
 }
 
 ReactMarkdown.propTypes = {
-  source: PropTypes.string,
-  path: PropTypes.string,
-  enableHtml: PropTypes.bool,
-  enableAnchor: PropTypes.bool,
+  'source': PropTypes.string,
+  'path': PropTypes.string,
+  'enableHtml': PropTypes.bool,
+  'enableAnchor': PropTypes.bool
 };

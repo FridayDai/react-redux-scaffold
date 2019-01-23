@@ -1,7 +1,8 @@
+/* eslint-disable */
 /**
  * Created by yi.dai on 2018/8/31.
  */
-(function () {
+(function() {
   // underscore 源码，获取root对象
   const root = typeof self === 'object' && self.self === self && self
         || typeof global === 'object' && global.global === global && global
@@ -12,7 +13,7 @@
 
   const event = {};
   const eventMap = {};
-  event.on = function () {
+  event.on = function() {
     const args = Array.prototype.slice.call(arguments);
     if (args[0] === void 0) {
       console.error('_event must have a eventName for first argument');
@@ -23,7 +24,7 @@
     eventMap[args[0]] = args[1];
   };
 
-  event.fire = function (eventName) {
+  event.fire = function(eventName) {
     for (const key in eventMap) {
       if (key === eventName && eventMap[key]) {
         eventMap[key]();
@@ -32,7 +33,7 @@
   };
 
   // 原先的_event对象
-  _event.noConflict = function () {
+  _event.noConflict = function() {
     root._event = previousEvent;
     return this;
   };
