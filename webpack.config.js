@@ -33,7 +33,8 @@ module.exports = {
       'containers': path.resolve(__dirname, 'src/containers/'),
       'components': path.resolve(__dirname, 'src/components/'),
       'common': path.resolve(__dirname, 'src/util/common.js'),
-      'miment': path.resolve(__dirname, 'src/util/time.js')
+      'miment': path.resolve(__dirname, 'src/util/time.js'),
+      'dispatch': path.resolve(__dirname, 'src/configStore.js')
     }
   },
 
@@ -115,7 +116,7 @@ module.exports = {
     'proxy': {
       '/rest/*': {
         'target': 'http://106.15.93.13/',
-        // target: "http://localhost:6789/",
+        // 'target': 'http://localhost:6789/',
         'secure': false
       },
       '/img/*': {

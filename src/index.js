@@ -8,8 +8,8 @@ import {
 import store from './configStore';
 // import App from './containers/App';
 // import Login from './containers/Login';
-import Comment from './containers/Comment';
-import WriteDoc from './containers/WriteDoc';
+// import Comment from './containers/Comment';
+// import WriteDoc from './containers/WriteDoc';
 // import Loading from './components/Common/Loading';
 // import Sort from './util/Sort';
 // import BSTree from './util/Tree';
@@ -69,6 +69,18 @@ const Profile = (location, cb) => {
     require.ensure([], (require) => {
         cb(null, require('./containers/Profile.js').default);
     }, 'Profile');
+};
+
+const WriteDoc = (location, cb) => {
+  require.ensure([], (require) => {
+    cb(null, require('./containers/WriteDoc.js').default);
+  }, 'WriteDoc');
+};
+
+const Comment = (location, cb) => {
+  require.ensure([], (require) => {
+    cb(null, require('./containers/Comment.js').default);
+  }, 'Comment');
 };
 
 render(

@@ -8,15 +8,15 @@ import {
 const docReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_DOC_LIST_SUCCESS:
-      return Object.assign({}, state, { 'docList': action.data });
+      return { ...state, 'docList': action.data };
     case GET_DOC_SUCCESS:
-      return Object.assign({}, state, { 'docFile': action.data });
+      return { ...state, 'docFile': action.data };
     case SAVE_DOC_SUCCESS:
-      return Object.assign({}, state, { 'save': action.data });
+      return { ...state, 'save': action.data };
     case EDIT_DOC_SUCCESS:
-      return Object.assign({}, state, { 'edit': action.data });
+      return { ...state, 'edit': action.data };
     case DELETE_DOC_SUCCESS:
-      return Object.assign({}, state, { 'delete': action.data });
+      return { ...state, 'delete': action.data };
     default:
       return state;
   }

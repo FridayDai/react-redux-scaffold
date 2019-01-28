@@ -2,6 +2,7 @@
  * Created by yi.dai on 2017/12/18.
  */
 import React, { Component } from 'react';
+import { dispatch } from 'dispatch';
 // import {fetchTopics, testAction} from '../actions/index';
 import { connect } from 'react-redux';
 import Miment from 'miment';
@@ -20,7 +21,7 @@ class HomePage extends Component {
   }
 
   componentDidMount() {
-    const { dispatch } = this.props;
+    // const { dispatch } = this.props;
     dispatch(getDocList());
 
     document.querySelectorAll('pre code').forEach((item) => {
@@ -32,7 +33,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { dispatch, docReducer } = this.props;
+    const { docReducer } = this.props;
     const docList = docReducer.docList || {};
     const test = `const Koa = require('koa');
 const app = new Koa(); 
@@ -45,7 +46,6 @@ app.listen(3000);`;
       <div className='homepage-content'>
         <Pages
           props={this.props}
-          dispatch={dispatch}
           docList={docList}
         />
         <section className='section-part'>

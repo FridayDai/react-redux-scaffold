@@ -10,8 +10,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ENTRY = path.resolve(ROOT, 'src', 'index.js');
 const SRC = path.resolve(ROOT, 'src');
 const DIST = path.resolve(ROOT, 'dist');
-const DLL = '/dll/dll.vendor.js';
-const manifest = require('./dll/vendor-manifest.json');
+// const DLL = '/dll/dll.vendor.js';
+// const manifest = require('./dll/vendor-manifest.json');
 
 const plugins = [
         new htmlwebpackplugin(
@@ -20,16 +20,16 @@ const plugins = [
                 'template': 'template.html',
                 'chunks': ['index'],
                 'filename': 'index.html',
-                'vendor': DLL,
+                // 'vendor': DLL,
                 'minify': {
                     'removeComments': true,
                     'collapseWhitespace': false
                 }
             }
         ),
-        new CopyWebpackPlugin([
-            { 'from': './dll', 'to': './dll' }
-        ]),
+        // new CopyWebpackPlugin([
+        //     { 'from': './dll', 'to': './dll' }
+        // ]),
         new MiniCssExtractPlugin({
             'filename': 'css/[name]_[hash:8].css',
             'allChunks': true
@@ -59,19 +59,19 @@ const plugins = [
 
         // DefinePlugin()方法能创建可以在编译时配置的全局常量，这可能是非常有用的，允许开发版本和编译出的版本具有不同的行为
         // 在这里将环境设置为时'production'时，react会自动去掉没有用到的代码部分，让文件进一步精简
-        // new webpack.DefinePlugin({
-        //  'process.env': {
-        //     'NODE_ENV': JSON.stringify('production')
-        //   }
-        // }),
+        new webpack.DefinePlugin({
+         'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+          }
+        }),
         // new webpack.optimize.CommonsChunkPlugin({
         //     name: 'vendor',
         //     filename: 'vendor.bundle.js'
         // }),
-        new webpack.DllReferencePlugin({
-            'context': ROOT,
-            manifest
-        }),
+        // new webpack.DllReferencePlugin({
+        //     'context': ROOT,
+        //     manifest
+        // }),
         new cleanwebpackplugin([DIST])
     ];
 
@@ -92,7 +92,8 @@ module.exports = {
             'containers': path.resolve(__dirname, 'src/containers/'),
             'components': path.resolve(__dirname, 'src/components/'),
             'common': path.resolve(__dirname, 'src/util/common.js'),
-            'miment': path.resolve(__dirname, 'src/util/time.js')
+            'miment': path.resolve(__dirname, 'src/util/time.js'),
+            'dispatch': path.resolve(__dirname, 'src/configStore.js')
         }
     },
 
@@ -125,6 +126,19 @@ module.exports = {
                         }
                     }
                 ]
+                // use: ExtractTextPlugin.extract({
+                //     fallback: 'style-loader',
+                //     use: ['css-loader?minimize',
+                //         {
+                //             loader:'postcss-loader',
+                //             options: {           // 如果没有options这个选项将会报错 No PostCSS Config found
+                //                 plugins: (loader) => [
+                //                     require('autoprefixer')(), //CSS浏览器兼容
+                //                 ]
+                //             }
+                //         }
+                //     ]
+                // })
             },
             {
                 'test': /\.(png|jpg|gif)$/,

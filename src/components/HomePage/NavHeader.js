@@ -1,6 +1,7 @@
 /**
  * Created by yi.dai on 2018/2/15.
  */
+import { dispatch } from 'dispatch';
 import AppBar from 'material-ui/AppBar';
 import Avatar from 'material-ui/Avatar';
 import React, { Component } from 'react';
@@ -114,7 +115,7 @@ export default class NavHeader extends Component {
                   this.setState({
                     'isClickLogout': true
                   }, () => {
-                    this.props.dispatch(logoutAction());
+                    dispatch(logoutAction());
                   });
                 }}
               />

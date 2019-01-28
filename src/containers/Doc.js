@@ -5,6 +5,7 @@
  * Created by yi.dai on 2017/12/18.
  */
 import React, { Component } from 'react';
+import { dispatch } from 'dispatch';
 import { connect } from 'react-redux';
 import './HomePage.css';
 import '../common/style.css';
@@ -33,7 +34,6 @@ class Doc extends Component {
     // }
 
     componentDidMount() {
-        const { dispatch } = this.props;
         dispatch(getDocById(this.id));
 
         document.body.scrollTop = 0;
@@ -77,7 +77,7 @@ class Doc extends Component {
                         label='删除' 
                         secondary={true}
                         onClick={() => {
-                            this.props.dispatch(deleteDoc(this.id));
+                            dispatch(deleteDoc(this.id));
                         }}
                     />
                 </div>

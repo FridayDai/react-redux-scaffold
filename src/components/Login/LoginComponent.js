@@ -2,6 +2,7 @@
  * Created by yi.dai on 2018/2/26.
  */
 import React, { Component } from 'react';
+import { dispatch } from 'dispatch';
 import './LoginComponent.css';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -38,28 +39,17 @@ export default class LoginComponent extends Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
-    const { props } = newProps;
-    if (props.loginReducer && props.loginReducer.code === 10000) {
-      // 登陆成功
-      browserHistory.push('/homepage');
-      localStorage.setItem('token', `${props.loginReducer.token ? props.loginReducer.token : ''}`);
-    } else if (props.loginReducer.code === -10000) {
-      this.setState({
-        'errorTextForUserName': '用户名可能不存在',
-        'errorTextForPassword': '密码错误'
-      });
-    }
-  }
-
-  handleLoginIn() {
-    const { dispatch } = this.props.props;
-
+  async handleLoginIn() {
     if (this.state.UserName && this.state.Password) {
-      // action
-      console.log(encryptPwd(this.state.Password));
-
-      dispatch(newLoginAction(this.state.UserName, encryptPwd(this.state.Password)));
+      const loginRes = await dispatch(newLoginAction(this.state.UserName, encryptPwd(this.state.Password)));
+      if(loginRes.code === 10000) {
+        browserHistory.push('/homepage');
+      } else {
+        this.setState({
+          'errorTextForUserName': '用户名可能不存在',
+          'errorTextForPassword': '密码错误'
+        });
+      }
     } else {
       this.setState({ 'open': true }, () => {
         setTimeout(() => {

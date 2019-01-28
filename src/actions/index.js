@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 import { browserHistory } from 'react-router';
 import fetchAction from '../util/fetchAction';
-import { setCookie, getCookie } from '../util/common';
+// import { getCookie } from '../util/common';
 
 export const TEST_ACTION = 'TEST_ACTION';
 export const REQUEST_TOPICS = 'REQUEST_TOPICS';
@@ -51,22 +51,12 @@ export const loginAction = (userName, password) => (dispatch) => {
   );
 };
 
-export const newLoginAction = (userName, password) => (dispatch) => {
-  fetchAction('/rest/login', { 'method': 'POST' }, { 'name': userName, password }).then(
-    (data) => {
-      if (data && data.code === 10000) {
-        dispatch(loginSuccess(data));
-        setCookie('token', data.token);
-        console.log(getCookie('token'));
-      } else {
-        dispatch(loginFail(data));
-      }
-    },
-    (xhr) => {
-      console.log(xhr);
-    },
+export const newLoginAction = (userName, password) => () => fetchAction('/rest/login', { 'method': 'POST' }, { 'name': userName, password }).then(
+      data => data,
+      (xhr) => {
+        console.error(xhr);
+      },
   );
-};
 
 const logoutSuccess = data => ({
   'type': LOGIN_SUCCESS,

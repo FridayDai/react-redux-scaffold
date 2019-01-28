@@ -14,7 +14,6 @@ export default class Pages extends PureComponent {
       <div id='pages' className='pages'>
         <NavHeader
           props={this.props}
-          dispatch={this.props.dispatch}
         />
         <Content docList={this.props.docList} />
       </div>

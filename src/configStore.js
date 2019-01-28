@@ -8,4 +8,8 @@ import reducer from './reducers/index';
 
 const enhancer = compose(applyMiddleware(thunk, createLogger));
 
-export default createStore(reducer, enhancer);
+const store = createStore(reducer, enhancer);
+
+export const { dispatch } = store;
+
+export default store;
