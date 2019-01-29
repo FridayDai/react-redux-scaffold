@@ -8,15 +8,10 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 import { newLoginAction } from '../../actions/index';
-import { encryptPwd, deleteCookie } from '../../util/common';
+import { encryptPwd } from '../../util/common';
 import Message from '../Message/index';
 
 export default class LoginComponent extends Component {
-  static handleLoginInWithoutPassword() {
-    deleteCookie('token');
-    browserHistory.push('/homepage');
-  }
-
   constructor(props) {
     super(props);
 
@@ -39,9 +34,9 @@ export default class LoginComponent extends Component {
     };
   }
 
-  async handleLoginIn() {
-    if (this.state.UserName && this.state.Password) {
-      const loginRes = await dispatch(newLoginAction(this.state.UserName, encryptPwd(this.state.Password)));
+  async handleLoginIn(UserName, Password) {
+    if (UserName && Password) {
+      const loginRes = await dispatch(newLoginAction(UserName, encryptPwd(Password)));
       if(loginRes.code === 10000) {
         browserHistory.push('/homepage');
       } else {
@@ -106,11 +101,11 @@ export default class LoginComponent extends Component {
               label='Login In'
               primary={true}
               className='login-button'
-              onClick={() => this.handleLoginIn()}
+              onClick={() => this.handleLoginIn(this.state.UserName, this.state.Password)}
             />
             <button
               className='login-button mouse-cursor-gradient-tracking'
-              onClick={() => LoginComponent.handleLoginInWithoutPassword()}
+              onClick={() => this.handleLoginIn('test', 'test')}
             >
               <span>Login In Without Password</span>
             </button>
