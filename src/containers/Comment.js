@@ -31,6 +31,10 @@ class Comment extends Component {
               this.handleClickButton();
           }
         });
+
+        window.onbeforeunload = () => {
+          this.ws.close();
+        };
     }
 
     connectWS() {
@@ -39,12 +43,16 @@ class Comment extends Component {
 
       // 连接关闭后的回调函数
       ws.onclose = () => {
+        ws.close();
         console.log('ws closed');
+        this.connectWS();
       };
 
       // 连接失败后的回调函数
       ws.onerror = (event) => {
+        ws.close();
         console.log('ws connected error: ', event);
+        this.connectWS();
       };
 
       // 连接成功后的回调函数
@@ -58,7 +66,10 @@ class Comment extends Component {
 
         if(msg.data) {
           this.state.msgArr.push(msg);
-          that.setState({ 'msgArr': this.state.msgArr });
+          that.setState({ 'msgArr': this.state.msgArr }, () => {
+            const chatRoom = document.getElementById('wechatShow');
+            chatRoom.scrollTop = chatRoom.scrollHeight;
+          });
         }
 
         that.setState({ 'ip': msg.ip });
@@ -76,9 +87,16 @@ class Comment extends Component {
 
     render() {
         return (
-            <React.Fragment className='wechat-container'>
-                <div className='wechat-show'>
-                    <p className='wechat-header'>Chat Room</p>
+            <div className='wechat-container'>
+                <div id='wechatShow' className='wechat-show'>
+                    <p className='wechat-header'>
+                      Chat Room
+                      <RaisedButton
+                          label='clear'
+                          style={{ 'marginLeft': '20px' }}
+                          onClick={() => this.setState({ 'msgArr': [] })}
+                      />
+                    </p>
                     <div>
                       {
                           this.state.msgArr.map(msg => (
@@ -107,7 +125,7 @@ class Comment extends Component {
                         onClick={() => this.handleClickButton()}
                     />
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }
