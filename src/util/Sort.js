@@ -47,7 +47,7 @@ export default class Sort {
     if (Object.prototype.toString.call(arr) !== '[object Array]') return arr;
 
     for (let i = 0; i < arr.length - 1; i++) {
-      for (let j = 1; j < arr.length - 1 - i; j++) {
+      for (let j = 0; j < arr.length - 1 - i; j++) {
         if (arr[j] > arr[j + 1]) {
           this.swap(arr, j, j + 1);
         }
@@ -111,3 +111,28 @@ export default class Sort {
 //         return _this.apply(context, args.concat(...arguments));
 //     }
 // };
+
+
+function partition(arr, left, right) {
+  let i = left;
+  let j = right;
+  const pivot = arr[0];
+  while(i < j) {
+    while(arr[j] >= pivot && i < j) {
+      j--;
+    }
+    while(arr[i] <= pivot && i < j) {
+      i++;
+    }
+    Sort.swap(arr, i, j);
+  }
+  Sort.swap(arr, 0, i);
+  return i;
+}
+
+function quickSort(arr) {
+  const pivot = partition(arr, 0, arr.length);
+  quickSort(arr, 0, pivot - 1);
+  quickSort(arr, pivot + 1, arr.length);
+}
+
