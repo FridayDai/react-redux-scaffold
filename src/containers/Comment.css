@@ -1,0 +1,23 @@
+.wechat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wechat-show {
+    background-color: #fdfdfd;
+    height: 75vh;
+    padding: 20px;
+    overflow: auto;
+}
+
+.wechat-input {
+    padding: 20px;
+    border-top: 2px solid #cccccc;
+    height: 18vh;
+    background-color: aliceblue;
+}
+.wechat-header {
+    font-weight: bold;
+}

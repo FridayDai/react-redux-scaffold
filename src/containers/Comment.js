@@ -3,53 +3,111 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SingleComment from 'components/Comment/index';
-import { getComments } from 'action';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import Miment from 'miment';
+import './Comment.css';
 
 class Comment extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            'comments': []
+          'ip': '',
+          'sendMsg': '',
+          'msgArr': []
         };
+
+        this.ws = undefined;
     }
 
-    componentWillMount() {
-        const { dispatch } = this.props;
+    componentDidMount() {
+        this.ws = this.connectWS();
 
-        dispatch(getComments());
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            'comments': nextProps.commentReducer.data
+        window.addEventListener('keyup', (e) => {
+          const event = e || window.event;
+          const key = event.which || event.keyCode || event.charCode;
+          if (key === 13) {
+              this.handleClickButton();
+          }
         });
+    }
+
+    connectWS() {
+      const that = this;
+      const ws = new WebSocket('ws://106.15.93.13:65534');
+
+      // 连接关闭后的回调函数
+      ws.onclose = () => {
+        console.log('ws closed');
+      };
+
+      // 连接失败后的回调函数
+      ws.onerror = (event) => {
+        console.log('ws connected error: ', event);
+      };
+
+      // 连接成功后的回调函数
+      ws.onopen = () => {
+        console.log('ws connected success');
+      };
+
+      // 从服务器接受到信息时的回调函数
+      ws.onmessage = (event) => {
+        const msg = JSON.parse(event.data);
+
+        if(msg.data) {
+          this.state.msgArr.push(msg);
+          that.setState({ 'msgArr': this.state.msgArr });
+        }
+
+        that.setState({ 'ip': msg.ip });
+      };
+
+      return ws;
+    }
+
+    handleClickButton() {
+      if(this.state.sendMsg && this.state.sendMsg.trim().length > 0) {
+          this.ws.send(this.state.sendMsg.trim());
+          this.setState({ 'sendMsg': '' });
+      }
     }
 
     render() {
         return (
-            <div
-                style={{
-'display': 'flex',
-                    'flexFlow': 'row wrap',
-'justifyContent': 'flex-start',
-'alignItems': 'flex-start'
-}}
-            >
-                {
-                    this.state.comments.map(item => (
-                        <SingleComment
-                            key={item.id}
-                            title={item.title}
-                            comment={item.comment}
-                            userId={item.userId}
-                            createTime={item.createTime}
-                            updateTime={item.updateTime}
-                        />
-                    ))
-                }
-            </div>
+            <React.Fragment className='wechat-container'>
+                <div className='wechat-show'>
+                    <p className='wechat-header'>Chat Room</p>
+                    <div>
+                      {
+                          this.state.msgArr.map(msg => (
+                              <div>
+                                {`${msg.ip.substr(7)}(${new Miment(msg.ts).format()}): ${msg.data}`}
+                              </div>
+                          ))
+                      }
+                    </div>
+                </div>
+                <div className='wechat-input'>
+                    <p>
+                        <span>Your ip: </span>
+                        <span>{this.state.ip}</span>
+                    </p>
+                    <TextField
+                        // defaultValue='Say something'
+                        floatingLabelText='Say Something'
+                        value={this.state.sendMsg}
+                        style={{ 'marginRight': '20px' }}
+                        onChange={(e, newValue) => this.setState({ 'sendMsg': newValue })}
+                    />
+                    <RaisedButton
+                        label='Send'
+                        primary={true}
+                        onClick={() => this.handleClickButton()}
+                    />
+                </div>
+            </React.Fragment>
         );
     }
 }

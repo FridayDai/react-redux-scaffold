@@ -199,3 +199,7 @@ export const deleteDoc = id => (dispatch) => {
     },
   );
 };
+
+// export const connectWS = () => {
+//   const ws = new WebSocket('ws://106.15.93.13:65534');
+// };
