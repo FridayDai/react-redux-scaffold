@@ -26,7 +26,7 @@ class Doc extends Component {
             'open': false,
             'errMsg': ''
         };
-        this.readOnly = getCookie('readOnly') === 1;
+        this.readOnly = getCookie('readOnly') === '1';
         console.log(this.readOnly);
 
         this.id = window.location.pathname.substr(1);
