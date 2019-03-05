@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { dispatch } from 'dispatch';
 import { connect } from 'react-redux';
+import { getCookie } from 'common';
 import './HomePage.css';
 import '../common/style.css';
 import hljs from 'highlightjs';
@@ -17,6 +18,7 @@ import Md from '../components/ReactMarkdown/index';
 import { getDocById, deleteDoc } from '../actions/index';
 import Message from '../components/Message/index';
 
+
 class Doc extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +26,8 @@ class Doc extends Component {
             'open': false,
             'errMsg': ''
         };
+        this.readOnly = getCookie('readOnly') === '1';
+        console.log(this.readOnly);
 
         this.id = window.location.pathname.substr(1);
     }
@@ -67,6 +71,7 @@ class Doc extends Component {
                 <div style={{ 'float': 'right', 'display': `${docId === 0 ? 'none' : ''}` }}>
                     <RaisedButton 
                         style={{ 'marginRight': '10px' }}
+                        disabled={this.readOnly}
                         label='编辑' 
                         secondary={true}
                         onClick={() => {
@@ -74,7 +79,8 @@ class Doc extends Component {
                         }}
                     />
                     <RaisedButton 
-                        label='删除' 
+                        label='删除'
+                        disabled={this.readOnly}
                         secondary={true}
                         onClick={() => {
                             dispatch(deleteDoc(this.id));

@@ -91,7 +91,7 @@ render(
         <Route path='/homepage' getComponent={HomePage} />
         <Route path='/writeDoc' getComponent={WriteDoc} />
         <Route path='/profile' getComponent={Profile} />
-        <Route path='/comment' getComponent={Comment} />
+        <Route path='/wechat' getComponent={Comment} />
         <Route path='/:id' getComponent={Doc} />
       </Route>
     </Router>

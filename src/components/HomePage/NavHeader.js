@@ -105,8 +105,8 @@ export default class NavHeader extends Component {
               />
               <MenuItem
                 leftIcon={<Book />}
-                primaryText='COMMENT'
-                onClick={() => { browserHistory.push('/comment'); }}
+                primaryText='WECHAT'
+                onClick={() => { browserHistory.push('/wechat'); }}
               />
               <MenuItem
                 leftIcon={<ActionFlightTakeoff />}

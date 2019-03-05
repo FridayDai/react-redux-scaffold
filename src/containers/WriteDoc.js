@@ -4,7 +4,7 @@ import './WriteDoc.css';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { saveDoc, getDocById, editDoc } from 'action';
-import { getQueryString } from 'common';
+import { getCookie, getQueryString } from 'common';
 import { browserHistory } from 'react-router';
 import miment from 'miment';
 import Message from '../components/Message/index';
@@ -262,6 +262,8 @@ class WriteDoc extends Component {
             'id': getQueryString('id'),
             'firstFlag': true
         };
+
+        this.readOnly = getCookie('readOnly') === '1';
     }
 
     componentWillMount() {
@@ -350,6 +352,7 @@ class WriteDoc extends Component {
                     />
                     <RaisedButton 
                         label='Save'
+                        disabled={this.readOnly}
                         primary={true} 
                         style={{ 'float': 'right' }}
                         onClick={() => this.saveDoc()}

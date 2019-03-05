@@ -25,11 +25,11 @@ export default class SingleComment extends Component {
     if (timestamp > 0) {
       const date = new Date(timestamp);
       const y = date.getFullYear();
-      const m = `${this.format(date.getMonth() + 1)}`;
-      const d = `${this.format(date.getDate())}`;
-      const hour = `${this.format(date.getHours())}`;
-      const min = `${this.format(date.getMinutes())}`;
-      const sec = `${this.format(date.getSeconds())}`;
+      const m = `${SingleComment.format(date.getMonth() + 1)}`;
+      const d = `${SingleComment.format(date.getDate())}`;
+      const hour = `${SingleComment.format(date.getHours())}`;
+      const min = `${SingleComment.format(date.getMinutes())}`;
+      const sec = `${SingleComment.format(date.getSeconds())}`;
 
       return `${y}-${m}-${d} ${hour}:${min}:${sec}`;
     }
