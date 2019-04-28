@@ -89,9 +89,44 @@ var loop = function(char, i, j) {
   return false;
 };
 
-// 5个物品，（重量，价值）分别为：（5，12），（4，3），（7，10），（2，3），（6，6）。
-// n个物品，W重量
+// dp 走台阶，（1，2，3） -> 10层台阶，总共有几种走法
+// 例如 都走1步，算一种，都走2步，算一种，走两个3步两个2步，算一种等等
 
-function loop() {
+function step(n) {
+  if(n === 0) return 0;
+  if(n === 1) return 1;
+  if(n === 2) return 2;
+  if(n === 3) return 4;
 
+  if(n > 3) {
+    return step(n - 1) + step(n - 2) + step(n - 3);
+  }
 }
+
+// 字符串全排列打印结果
+// 例如 abc 有6种全排列 abc acb bac bca cab cba
+
+function A(str) {
+  if(str.length === 0) return [];
+  if(str.length === 1) return [str];
+  if(str.length === 2) return [str.substring(0, 1) + str.substring(1, 2), str.substring(1, 2) + str.substring(0, 1)];
+
+  if(str.length > 2) {
+    const valueArr =  [];
+    for(let i = 0; i < str.length; i++) {
+      const chooseOne = str[i];
+      const rest = A(str.substring(0, i) + str.substring(i + 1));
+
+      for(let j = 0; j < rest.length; j++) {
+        valueArr.push(chooseOne + rest[j]);
+      }
+    }
+    return valueArr;
+  }
+}
+
+
+
+
+
+

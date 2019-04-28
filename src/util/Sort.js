@@ -60,36 +60,31 @@ export default class Sort {
   // 1．先从数列中取出一个数作为基准数。
   // 2．分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边。
   // 3．再对左右区间重复第二步，直到各区间只有一个数。
-  static partition(arr, left, right) {
-    if (Object.prototype.toString.call(arr) !== '[object Array]') return arr;
-
-    const temp = arr[left];
-    while (left < right) {
-      while (arr[right] >= temp && left < right) {
-        right--;
+  quickSort = (array) => {
+    const sort = (arr, left = 0, right = arr.length - 1) => {
+      if (left >= right) {//如果左边的索引大于等于右边的索引说明整理完毕
+        return
       }
-      arr[left] = arr[right];
-
-      while (arr[left] <= temp && left < right) {
-        left++;
+      let i = left;
+      let j = right;
+      const baseVal = arr[j]; // 取无序数组最后一个数为基准值
+      while (i < j) {//把所有比基准值小的数放在左边大的数放在右边
+        while (i < j && arr[i] <= baseVal) { //找到一个比基准值大的数交换
+          i++;
+        }
+        arr[j] = arr[i]; // 将较大的值放在右边如果没有比基准值大的数就是将自己赋值给自己（i 等于 j）
+        while (j > i && arr[j] >= baseVal) { //找到一个比基准值小的数交换
+          j--;
+        }4
+        arr[i] = arr[j] // 将较小的值放在左边如果没有找到比基准值小的数就是将自己赋值给自己（i 等于 j）
       }
-      arr[right] = arr[left];
-    }
-    arr[left] = temp;
-    return left;
-  }
-
-  static quickSort(arr, left, right) {
-    if (left >= right) {
-      return;
-    }
-    const pivot = Sort.partition(arr, left, right);
-    Sort.quickSort(arr, left, pivot - 1);
-    Sort.quickSort(arr, pivot + 1, right);
-  }
-
-  static duiSort() {
-
+      arr[j] = baseVal; // 将基准值放至中央位置完成一次循环（这时候 j 等于 i ）
+      sort(arr, left, j-1); // 将左边的无序数组重复上面的操作
+      sort(arr, j+1, right); // 将右边的无序数组重复上面的操作
+    };
+    const newArr = array.concat(); // 为了保证这个函数是纯函数拷贝一次数组
+    sort(newArr);
+    return newArr;
   }
 }
 
@@ -112,27 +107,65 @@ export default class Sort {
 //     }
 // };
 
+// 0, 1 背包问题
+// 物品ID/重量   价值
+//   1           3
+//   2           7
+//   3           12
+// 你的背包容量有10，请问怎么放能价值最高
 
-function partition(arr, left, right) {
-  let i = left;
-  let j = right;
-  const pivot = arr[0];
-  while(i < j) {
-    while(arr[j] >= pivot && i < j) {
-      j--;
-    }
-    while(arr[i] <= pivot && i < j) {
-      i++;
-    }
-    Sort.swap(arr, i, j);
+// 思路： f(n) = max{ w[1] + f(n-1), w[2] + f(n-2), w[3] + f(n-3) } ,此时 n>=3， f(1) = 3, f(2) = 7; 放个map用来做缓存
+function addToMap(map, key, value) {
+  if(!map[key]) {
+    map[key] = value;
   }
-  Sort.swap(arr, 0, i);
-  return i;
+  return map;
+}
+const map = {};
+function loop(n) {
+  if(map[n]) return map[n];
+
+  if(n === 0) {
+    addToMap(map, 0, 0);
+    return 0;
+  }
+  if(n === 1) {
+    addToMap(map, 1, 3);
+    return 3;
+  }
+  if(n === 2) {
+    addToMap(map, 2, 7);
+    return 7;
+  }
+
+  if(n >= 3) {
+    const maxValue =  Math.max(3 + loop(n-1), 7 + loop(n-2), 12 + loop(n-3));
+    addToMap(map, n, maxValue);
+    return maxValue;
+  }
 }
 
-function quickSort(arr) {
-  const pivot = partition(arr, 0, arr.length);
-  quickSort(arr, 0, pivot - 1);
-  quickSort(arr, pivot + 1, arr.length);
-}
+// 走台阶问题 ，打印所有方案
+function consoleStep(n) {
+  if(n === 0) return [];
+  if(n === 1) return ['1'];
 
+  if(n === 2) return ['11', '2'];
+
+  if(n > 2) {
+    const tempOne = consoleStep(n - 1);
+    const tempTwo = consoleStep(n - 2);
+    const oneArr = [];
+    const twoArr = [];
+    tempOne.forEach((item) => {
+      const one = `1${item}`;
+      oneArr.push(one);
+    });
+    tempTwo.forEach((item) => {
+      const two = `2${item}`;
+      twoArr.push(two);
+    });
+
+    return oneArr.concat(twoArr);
+  }
+}
