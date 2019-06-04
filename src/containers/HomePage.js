@@ -3,7 +3,6 @@
  */
 import React, { Component } from 'react';
 import { dispatch } from 'dispatch';
-// import {fetchTopics, testAction} from '../actions/index';
 import { connect } from 'react-redux';
 import Miment from 'miment';
 import './HomePage.css';

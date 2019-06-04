@@ -112,6 +112,17 @@ export const getDocById = id => (dispatch) => {
   );
 };
 
+export const searchKeyword = keyword => (dispatch) => {
+  fetchAction(`/rest/search/${encodeURIComponent(keyword)}`, { 'method': 'GET' }).then(
+      (data) => {
+        dispatch({ 'type': 'SEARCH_KEYWORD', 'data': data });
+      },
+      (xhr) => {
+        console.log(xhr);
+      }
+  );
+};
+
 export const addCommentSuccess = data => ({
   'type': ADD_COMMENT_SUCCESS,
   data

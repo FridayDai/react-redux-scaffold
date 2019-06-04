@@ -17,6 +17,8 @@ const docReducer = (state = {}, action) => {
       return { ...state, 'edit': action.data };
     case DELETE_DOC_SUCCESS:
       return { ...state, 'delete': action.data };
+    case 'SEARCH_KEYWORD':
+      return { ...state, 'docList': action.data };
     default:
       return state;
   }
