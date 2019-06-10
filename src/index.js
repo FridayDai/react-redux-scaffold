@@ -55,6 +55,12 @@ const Doc = (location, cb) => {
   }, 'Doc');
 };
 
+const Upload = (location, cb) => {
+    require.ensure([], (require) => {
+        cb(null, require('./containers/Upload.js').default);
+    }, 'Upload');
+};
+
 // const Doc = Loadable({
 //   'loader': () => import('./containers/Doc.js'),
 //   'loading': Loading
@@ -92,6 +98,7 @@ render(
         <Route path='/writeDoc' getComponent={WriteDoc} />
         <Route path='/profile' getComponent={Profile} />
         <Route path='/wechat' getComponent={Comment} />
+        <Route path='/upload' getComponent={Upload} />
         <Route path='/:id' getComponent={Doc} />
       </Route>
     </Router>
