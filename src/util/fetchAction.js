@@ -41,6 +41,7 @@ const fetchAction = (url, options, data = null) => {
         closeLoding(loadingSpin);
         if (response.status >= 200 && response.status < 400) {
           // 这里做一层特殊处理，其实非常不好，我暂时还没想到解决方法
+          console.error(response);
           if(response.redirected) {
               browserHistory.push(response.url);
           } else {
