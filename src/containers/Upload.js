@@ -40,7 +40,7 @@ class Upload extends Component {
                             formData.append('file', item);
                             formData.append('index', index);
 
-                            axios.post('http://localhost:6789/rest/upload', formData);
+                            axios.post('/rest/upload', formData);
                         });
                     }}
                 />

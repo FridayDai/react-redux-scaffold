@@ -51,7 +51,8 @@ module.exports = {
                 require('autoprefixer')() // CSS浏览器兼容
               ]
             }
-          }
+          },
+          'less-loader'
         ]
       },
       {
@@ -70,7 +71,7 @@ module.exports = {
       },
       {
         'exclude': ['/node_modules/', DIST],
-        'test': /\.(png|jpg|gif)$/,
+        'test': /\.(png|jpg|gif|ttf|woff|eot|svg)$/,
         'use': ['url-loader?limit=10000&name=[name]_[hash:8].[ext]']
       }
     ]
