@@ -60,6 +60,7 @@ export default class Sort {
   // 1．先从数列中取出一个数作为基准数。
   // 2．分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边。
   // 3．再对左右区间重复第二步，直到各区间只有一个数。
+
   quickSort = (array) => {
     const sort = (arr, left = 0, right = arr.length - 1) => {
       if (left >= right) {//如果左边的索引大于等于右边的索引说明整理完毕
@@ -72,13 +73,16 @@ export default class Sort {
         while (i < j && arr[i] <= baseVal) { //找到一个比基准值大的数交换
           i++;
         }
-        arr[j] = arr[i]; // 将较大的值放在右边如果没有比基准值大的数就是将自己赋值给自己（i 等于 j）
+        arr[j] = arr[i];// 将较大的值放在右边如果没有比基准值大的数就是将自己赋值给自己（i 等于 j）
+        console.log('i: ', arr);
         while (j > i && arr[j] >= baseVal) { //找到一个比基准值小的数交换
           j--;
-        }4
-        arr[i] = arr[j] // 将较小的值放在左边如果没有找到比基准值小的数就是将自己赋值给自己（i 等于 j）
+        }
+        arr[i] = arr[j]; // 将较小的值放在左边如果没有找到比基准值小的数就是将自己赋值给自己（i 等于 j）
+        console.log('j: ', arr);
       }
       arr[j] = baseVal; // 将基准值放至中央位置完成一次循环（这时候 j 等于 i ）
+      console.log('ij: ', arr);
       sort(arr, left, j-1); // 将左边的无序数组重复上面的操作
       sort(arr, j+1, right); // 将右边的无序数组重复上面的操作
     };
@@ -86,6 +90,21 @@ export default class Sort {
     sort(newArr);
     return newArr;
   }
+
+
+  // 二路归并排序
+  static MergeSort(array) {
+    if(array.length < 2) {
+      return array;
+    }
+
+    const index = Math.floor(array.length / 2);
+    const left = this.MergeSort(array.slice(0, index));
+    const right = this.MergeSort(array.slice(index));
+
+    return this.MergeSortItem()
+  }
+
 }
 
 // Function.prototype.call = function myCall(context) {
@@ -169,3 +188,5 @@ function consoleStep(n) {
     return oneArr.concat(twoArr);
   }
 }
+
+//

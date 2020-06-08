@@ -50,5 +50,5 @@
 }());
 
 // sample
-_event.on('you.click', () => { console.log('test click'); });
+_event.on('you.click', () => { console.log('test.js click'); });
 _event.fire('you.click');

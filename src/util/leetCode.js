@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * Created by yi.dai on 2019/2/15.
  */
@@ -123,4 +125,56 @@ function A(str) {
     }
     return valueArr;
   }
+}
+
+Function.prototype.mybind = function(thisArg, ...args) {
+  const self = this;
+
+  return function F(...bindArgs) {
+    if(this instanceof F) {
+      return new self(...args, ...bindArgs);
+    }
+    return self.call(thisArg, ...args, ...bindArgs);
+  };
+};
+Function.prototype.hiscall = function(context) {
+  const ctx = context || window;
+  ctx._fn = this;
+  const args = [...arguments].slice(1);
+
+  const result =  ctx._fn(...args);
+  delete ctx._fn;
+  return result;
+};
+
+// 反转二叉树 （用递归的思想，一层一层反转）
+function inverseTree(root) {
+  if(!root) return;
+
+  const temp = root.left;
+  root.left = root.right;
+  root.right = temp;
+
+  inverseTree(root.left);
+  inverseTree(root.right);
+}
+
+// 单链表反转 1-> 2 -> 3  : 3 -> 2 -> 1
+// 思路：用两个指针来实现,一个pre指针，一个next指针。初始化时 pre指向null，next指向head,然后while循环，将指针反转
+// 1. next指向head.next
+// 2. head.next指向pre
+// 3. pre = head, pre右移
+// 4. head = next， head右移
+// 移动到左右pre即为新的head节点
+function reverseList(head) {
+  let pre = null;
+  let next = head;
+  while(head !== null) {
+    next = head.next;
+    head.next = pre;
+    pre = head;
+    head = next;
+  }
+
+  return pre;
 }
