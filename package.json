@@ -40,7 +40,7 @@
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "lodash": ">=4.17.5",
-    "markdown-it": "^8.4.0",
+    "markdown-it": "^12.3.2",
     "markdown-it-decorate": "^1.2.2",
     "mini-css-extract-plugin": "^0.4.3",
     "path": "^0.12.7",
